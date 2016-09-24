@@ -1,0 +1,259 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+/* 
+-------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+@import 'https://fonts.googleapis.com/css?family=Allura&subset=latin-ext';
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  font-family: "Titillium Web",sans-serif !important;
+  font-size: 14px;
+  background-color: #F0F0F0;
+  line-height: 22px;
+  font-weight: 400;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  min-height: 60px;
+  background-color: #333333;
+  color: #ddd;
+  
+  line-height: 60px;
+  
+  overflow: hidden;
+}
+
+nav.navbar{
+    margin: 0;
+    
+}
+
+.navbar a{
+    text-transform: uppercase;
+    font-weight: bolder;
+    color: #ddd;
+} 
+
+a:hover{
+    color: #00B4E8;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+    color:  #00B4E8;
+    background-color: transparent;
+    
+}
+
+*:focus{
+    outline: 0 !important;
+}
+
+.blog-header{
+    height: 300px;
+    font-size: 48px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.blog-header > img{
+    width: auto; 
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -30%;
+} 
+
+@media (min-width: 1921px) {
+    .blog-header > img {
+        width: 100%; 
+        left: 0;
+    }
+}
+
+.blog-header > div{
+    width: 100%; 
+    height: 100%;
+    background-color: #555;
+} 
+
+article.row{
+    margin: 15px 0;
+}
+@media(max-width:480px){
+#sidebar {
+    position: absolute;
+    top: -12px;
+    padding: 0px;
+    background-color: #fbfbfb;
+    z-index: 1000;
+}  
+
+.sidebar-offcanvas {
+    margin-left: -75%;
+    transition: margin-left 0.5s ease-in-out 0.01s;
+}
+}
+
+.btn-toggle {
+    display: inline-block;
+    position: absolute;
+    right: -40px;
+    width: 40px;
+    height: 40px;
+    background-color: #333333;
+    border-radius: 0 !important;
+    opacity: 0.9;
+    color: #fff;
+}
+
+
+.btn-toggle:hover, .btn-toggle:focus, .btn-toggle.focus {
+    color: #ddd !important;
+}
+.toggled {
+    margin-left: 0 !important;
+}
+
+.sidebar-module , .sidebar-module + aside {
+    width: 50%;
+    margin: 0 auto;
+    
+    padding-bottom: 1em;
+}
+
+#main-content{
+    position: relative;
+    height: 100%;
+}
+
+.polaroid {
+    width: 400px;
+    border-width: 15px 15px 65px;
+    border-style: solid;
+    border-color: #FFF;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+    transform: rotate(-1deg);
+}
+
+.polaroid:hover {
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.15);
+    transform: rotate(2deg) scale(1.05);
+}
+
+article.post > *:first-child{
+    margin: 0 auto;
+}
+article.post {
+    padding-bottom: 5em;
+    margin-bottom: 2em;
+    border-bottom: 2px dashed #AAA;
+    
+    min-height: 400px;
+}
+    
+
+article.post >  *:nth-child(2) {
+    height: 100%;
+    margin: 0 auto;
+}
+
+article.post >  *:nth-child(2) > p{
+    line-height: 1.8em;
+    
+    margin: 2em auto;
+}
+
+#tags{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#tags a{
+    color: #333333;
+}
+
+.grey {
+    color: #666;
+    margin: 0 2px;
+}
+
+#social-media > span {
+    margin-right: 10px;
+}
+
+#tellus{
+    font-family: 'Allura', cursive;
+    font-size: 25px;
+
+}
+.seam {
+    border-bottom: #aaaaaa dashed 2px;
+}
+
+/*gallery styles*/
+
+@media (min-width:320px){
+.thumbnail-img {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  overflow: hidden;
+}    
+}
+
+@media (min-width:480px){
+.thumbnail-img {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  overflow: hidden;
+}    
+}
+
+.thumbnail-img {
+  position: relative;
+  overflow: hidden;
+}
+.thumbnail-img img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+.thumbnail-img img.portrait {
+  width: 100%;
+  height: auto;
+}
+
+/*center element in figure container*/
+
+figure > * {
+    display: block;
+    margin: 0 auto;
+}
+
+figure > figcaption > *{
+    font-family: "Titillium Web";
+}

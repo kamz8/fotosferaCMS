@@ -1,0 +1,33 @@
+<?php
+
+namespace Webbooster\Exif;
+
+use Illuminate\Support\ServiceProvider;
+
+class ExifClassServiceProvider extends ServiceProvider
+{
+  
+    /**
+     * Bootstrap the application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //
+    }
+
+    
+    /**
+     * Register the application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->app->bind('exif', function(){
+            return new \Webbooster\Exif\ExifClass();
+        });
+    }
+    
+}
