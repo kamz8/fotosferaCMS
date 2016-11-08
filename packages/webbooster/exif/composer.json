@@ -1,0 +1,13 @@
+{
+    "name": "webbooster/exif",
+    "description": "Exif-package to get photo deatels",
+    "authors": [
+        {
+            "name": "Kamil Żmijowski",
+            "email": "kamzil2@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
+

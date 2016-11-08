@@ -1,0 +1,13 @@
+{
+    "name": "webbooster/timezones",
+    "description": "Demo-package from tutorial",
+    "authors": [
+        {
+            "name": "Laravel Daily",
+            "email": "info@laraveldaily.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
+

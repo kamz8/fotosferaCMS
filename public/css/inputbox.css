@@ -1,0 +1,65 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2016-10-20, 00:17:10
+    Author     : User
+*/
+
+.input-file {
+    outline: 4px dashed #888;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+}
+
+.box{
+font-size: 2.25rem;
+background-color: #fff;
+position: relative;
+padding: 50px 20px; 
+
+color: #555;
+}
+
+.box.input-file .box-dragndrop {
+  display: inline;
+}
+
+.box-image{
+    display: block;
+   
+}
+
+.box-file{
+    width: 0.1px;
+height: 0.1px;
+opacity: 0;
+overflow: hidden;
+position: absolute;
+z-index: -1;
+}
+
+.box-file + label {
+    max-width: 80%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    
+    font-size: 16px;
+}
+
+.box-file + label > strong{
+    font-weight: bold;
+}
+
+
+.box-dragndrop,
+.box-uploading,
+.box-success,
+.box-error {
+  display: none;
+}
