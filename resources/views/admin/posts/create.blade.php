@@ -52,13 +52,14 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
    <script src="{{ asset('js/plugins/bootstrap-tagsinput.js')}}"></script>
+   <script src="{{ asset('js/draggablezone.js')}}"></script>
        <script>
 $(document).ready(function(e){
 $('#tags').tagsinput({
   maxTags: 3
 }); 
 
-$('bootstrap-tagsinput').addClass('form-control');
+ $(document).find('.bootstrap-tagsinput').addClass('form-control');
 });       
    </script>    
 @endsection                        

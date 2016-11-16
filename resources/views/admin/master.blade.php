@@ -75,7 +75,7 @@
                     <li  class="{{ Request::is('admin') ? 'active' : '' }}">
                         <a href="{{url('admin')}}"><i class="fa fa-fw fa-dashboard"></i> Panel Główny</a>
                     </li>
-                    <li  class="{{ Request::is('users') ? 'active' : '' }}">
+                    <li  class="{{ Request::is('admin/users') ? 'active' : '' }}">
                         <a href="{{url('admin/users')}}"><i class="fa fa-fw fa-users"></i> Urzytkownicy</a>
                     </li>    
                   
@@ -83,13 +83,16 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-thumb-tack"></i> Blog <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="{{url('admin/posts')}}">Wszytkie Wpisy</a>
+                                <a class="{{ Request::is('admin/posts') ? 'active' : '' }}" href="{{url('admin/posts')}}">Wszytkie Wpisy</a>
                             </li>
                             <li>
-                                <a href="{{url('admin/posts/create')}}">Dodaj</a>
+                                <a class="{{ Request::is('admin/posts/create') ? 'active' : '' }}" href="{{url('admin/posts/create')}}">Dodaj</a>
                             </li>
                         </ul>
                     </li>   
+                    <li  class="{{ Request::is('admin/files') ? 'active' : '' }}">
+                        <a href="{{url('admin/files')}}"><i class="fa fa-fw fa-files-o"></i> Menager Plików</a>
+                    </li>                    
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

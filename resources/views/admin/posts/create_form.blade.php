@@ -18,7 +18,7 @@
                 <div class="col-sm-10">
                   <div class="box input-file col-xs-12">
                       <div class="box-input text-center">
-                          <i class="fa fa-image fa-5x box-image"></i>  
+                          <i class="fa fa-image fa-5x box-image"></i> <div class="clearfix"></div> 
                         <input class="box-file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
                         <label for="file"><strong>Wybierz obrazek</strong><span class="box-dragndrop"> lub przeciągnij go tutaj</span>.</label>
                         <div class="box-uploading">Uploading&hellip;</div>

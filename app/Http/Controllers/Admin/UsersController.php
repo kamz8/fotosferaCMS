@@ -73,22 +73,18 @@ class UsersController extends Controller
                 ), 400); // 400 being the HTTP code for an invalid request.
             }else{
                 $request->only(['name','email','password','role']);
-                $request->merge(['password' => Hash::make($request->password)]);
-                    $request->merge(['password' => Hash::make($request->password)]);
-                                    
                 $user = User::create($request->all());
-                $user->setPasswordAttribute($request->passwort);
-                $user->save();
+//                $user->setPasswordAttribute($request->passwort);
+//                $user->save();
                 return Response::json($user, 200);                
             }
-            
           }         
      }
 
      public function edit($id)
      {
         $user = User::findOrFail($id); 
-        
+  
         return Response::json($user);
      }   
      
@@ -100,9 +96,8 @@ class UsersController extends Controller
         }  
         return Response::json($user);
      } 
-     
-     public function update(Request $request, $id)
-     {
+     //update user 
+     public function update(Request $request, $id){
           $user = User::findOrFail($id); 
           if ($request->ajax()){  
               
@@ -118,19 +113,15 @@ class UsersController extends Controller
                 return Response::json(array(
                     'success' => false,
                     'errors' => $validator->getMessageBag()->toArray(),
-  
-
-                ), 400); // 400 being the HTTP code for an invalid request.
+                  ), 400); // 400 being the HTTP code for an invalid request.
             }else{
                 if(!isEmptyString($request->password)){
-                    $request->merge(['password' => Hash::make($request->password)]);
                     $user->setPasswordAttribute($request->passwort);
                     $user->update($request->except('password'));
                 }
                 else{
                     $user->update($request->all());
                 }
-
                 return Response::json($user, 200);                
             }
             
