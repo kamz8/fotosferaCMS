@@ -24,7 +24,7 @@ Route::group(['middleware' => ['web'] ], function () {
         Route::get('/users','UsersController@show');
         Route::patch('/settings','SettingsController@updatePasswort');
         Route::resource('posts', 'PostController');
-        
+        Route::get('/files','FilesController@index');
         Route::group(['prefix' => 'api'], function () {
             
             Route::get('/', function () {
@@ -39,6 +39,7 @@ Route::group(['middleware' => ['web'] ], function () {
             Route::post('/users/serch','UsersController@serch');
             //Blog resorces
             Route::get('/posts','PostController@jsonGet');
+            Route::resource('/files','FilesController');
             
         });
             Route::get('/moderator', function () {
