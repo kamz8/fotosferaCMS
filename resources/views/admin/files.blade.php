@@ -2,7 +2,7 @@
 
 @section('style')
 <link href="{{ asset('css/plugins/bootstrap-tagsinput.css')}}" rel="stylesheet">
-<link href="{{ asset('css/inputbox.css')}}" rel="stylesheet">
+<link href="{{ asset('css/bs-dropbox.css')}}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -30,34 +30,19 @@
                                          
 
                             <div class="col-sx-12 col-sm-10 col-sm-push-1">
-                                <div id="dropFile" class="box input-file col-xs-12">
-                                  <div class="box-input text-center">
-                                      <i class="fa fa-image fa-5x box-image"></i> <div class="clearfix"></div> 
-
-                                    <label for="file"><strong>Wybierz obrazek</strong><span class="box-dragndrop"> lub przeciągnij go tutaj</span>.</label>
-                                    <div id="prosessing" class="hide" >Pobieranie&hellip;</div>
-                                      <div class="hide success"></div>                       
-                                  </div>
-
-                              </div>                    
-
-                            </div>
+                                <div id="myDropbox" class="dropbox col-xs-12"> </div>
           
                    
 @endsection
 @section('script')
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-   <script src="{{ asset('js/plugins/bootstrap-tagsinput.js')}}"></script>
-   <script src="{{ asset('js/draggablezone.js')}}"></script>
-       <script>
-$(document).ready(function(e){
-$('#tags').tagsinput({
-  maxTags: 3
-}); 
 
- $(document).find('.bootstrap-tagsinput').addClass('form-control');
+   <script src="{{ asset('js/bootstrap-dropbox.js')}}"></script>
+<script>
+$(document).ready(function(e){
+
+$('#myDropbox').dropbox({url:"{{  url('admin/api/files/') }}"});
 });       
-   </script>    
+</script>    
 @endsection                        

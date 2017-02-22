@@ -1,5 +1,7 @@
 <?php
 
+
+
 return [
 
     /*
@@ -78,7 +80,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'pl',
 
     /*
     |--------------------------------------------------------------------------
@@ -161,6 +163,7 @@ return [
         Webbooster\Exif\ExifClassServiceProvider::class,
         App\Providers\HelperServiceProvider::class,
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -212,6 +215,7 @@ return [
         'Helpers' => App\Http\Helpers::class,
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
         'Exif' => Webbooster\Exif\ExifFacade::class,
+        'Image' => Intervention\Image\Facades\Image::class
     ],
 
 ];

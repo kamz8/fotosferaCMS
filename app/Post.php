@@ -4,15 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
-{
+class Post extends Model {
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'title', 'content', 'img_url','user_id'
+        'title', 'content', 'media_id', 'user_id'
     ];
 
     /**
@@ -21,20 +21,36 @@ class Post extends Model
      * @var array
      */
     protected $hidden = [
-        'slug'
+        'slug', 
     ];
-    
-    public function users(){
-        return $this->belongsTo('App\Users');
+
+
+    public function user() {
+        return $this->belongsTo('App\User');
     }
 
+    public function media() {
+        return $this->belongsTo('App\Media');
+    }
+    
+    public function tag() {
+        return $this->belongsToMany('App\Tag', 'post_tag')->withTimestamps();
+    }    
 
-    public function setTitleAttribute($value)
-      {
+    public function setTitleAttribute($value) {
         $this->attributes['title'] = $value;
 
-        if (! $this->exists) {
-          $this->attributes['slug'] = str_slug($value);
+        if (!$this->exists) {
+            $this->attributes['slug'] = str_slug($value);
         }
-      }    
+    }
+    
+    public function serch($keyword){
+        
+        return $this->with('user','tag')->where('title','LIKE','%'.$keyword.'%')->get(); 
+         
+    }    
+   
+       
+
 }

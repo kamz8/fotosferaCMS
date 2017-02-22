@@ -25,8 +25,8 @@ class User extends Authenticatable
        'remember_token','password'
     ];
     
-    public function posts(){
-        return $this->hasMany('App\Posts');
+    public function post(){
+        return $this->hasMany('App\Post');
     }    
     
     public function role()

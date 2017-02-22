@@ -50,11 +50,11 @@
         return this.each(function() {
            var $t = $(this);
            
-           options.load = function (url){
+           options.load = function (){
             $.ajax({
 
                 type: "get",
-                url: "api/users",
+                url: options.url,
                 dataType: options.dataType,
                 cache: false,
                 beforeSend: function(data){
@@ -88,33 +88,24 @@
             //...parametry
             url: '', 
             tableID: '',
+            model: function(data) {},
             dataType: 'json'   //json or html
         }, options);
+       
+function noMatches(html)
+{
 
-        var renderRow = function(data){
-                var lastId = $(this + 'tbody > tr').length + 1;
-                var row = '';
-                $.each(data, function(i, item) {
-                    if (i<=0) row += '<tr id="item' + item + '"><td>' + lastId + '</td>';
-                    row += '<td>' + item + '</td>';
-                });                
-
-                row += '<td><button value="' + data.id + '" data-action="edit" class="btn btn-gray"><i class="fa fa-pencil"></i>&nbsp; edytuj</button> ';
-                row += '<button value="' + data.id + '" data-action="delete" class="btn btn-danger "><i class="fa fa-remove"></i>&nbsp; usuń</button></td></tr>';    
-                
-                return row;
-        };        
-        
+ $(options.tableID+" tbody").append('<tr class="danger"><td colspan="7" style="font-size: 34px;"> <i class="fa fa-meh-o" aria-hidden="true"></i> Oops!  Nic nie znaleziono.</td></tr>');
+    
+ }        
         return this.each(function() {
             var $t = this;
-        $t.keyup(function() {
-        var keyword = $t.val();
+        
+        $(this).keyup(function(e) {
+        var keyword = $(this).val();
         keyword = $.trim(keyword);
-        if(keyword=='') {
-               load();
-        } else {
             
-            $(options.tableID+"> tbody").html('');
+            $(options.tableID+" > tbody").html('');
             $.ajax({
                 type: "post",
                 url: options.url,
@@ -126,26 +117,30 @@
                 dataType: options.dataType,
                 cache: false,
                 beforeSend: function(html){
-                    $(options.tableID+"> tbody").html('');
+                    $(options.tableID+" tbody").html('');
                     $(options.tableID+" tbody").append('<tr><td class="spinner" colspan="7" style="position:relative;">Wczytywanie danych <i class="fa fa-spinner fa-spin" style="font-size: 64px;"></i></td></tr>');
                 },
-                success: function(html)
+                success: function(dataResponse)
                 {
+                            
                      $(".spinner").remove();
-                     $(options.tableID+"> tbody").html('');
+                     $(options.tableID+" tbody").html('');
                     if(options.dataType=='json'){
-                         if(html=='no_result')
-                            noMatches(html);
+                         if(dataResponse.success===false){
+                            noMatches(dataResponse.message);
+                                console.log(dataResponse.message);
+                         }  
                         else{
-                            $(options.tableID+"tbody .danger").remove();
-                            $(options.tableID+" tbody").append(html);
+                            
+                            $(options.tableID+" tbody .danger").remove();
+                            $(options.tableID+" tbody").append(options.model(dataResponse));
                         }                        
                     } 
 
                         
                 }
             });
-        } return false;
+
     });            
         });      
         

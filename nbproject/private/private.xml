@@ -4,13 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/master.blade.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Http/Controllers/Admin/AdminController.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Http/Controllers/Admin/PostController.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Http/routes.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/posts/show.blade.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/posts/create.blade.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Http/Controllers/Admin/UsersController.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Http/Controllers/Auth/AuthController.php</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/posts/edit.blade.php</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/posts/create_form.blade.php</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/public/css/bs-dropbox.css</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/public/js/bootstrap-dropbox.js</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/files.blade.php</file>
         </group>
     </open-files>
 </project-private>

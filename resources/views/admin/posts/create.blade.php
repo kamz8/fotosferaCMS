@@ -2,7 +2,7 @@
 
 @section('style')
 <link href="{{ asset('css/plugins/bootstrap-tagsinput.css')}}" rel="stylesheet">
-<link href="{{ asset('css/inputbox.css')}}" rel="stylesheet">
+<link href="{{ asset('css/bs-dropbox.css')}}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -41,7 +41,7 @@
                             <h3 class="panel-title">Dodanie nowego subskrybenta.</h3>
                         </div>
                     <div class="panel-body ">
-                        {!! Form::open(array('url' => action('admin\PostController@store'), 'method' => 'post', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data' )) !!}
+                        {!! Form::open(array('url' => action('admin\PostController@store'), 'method' => 'post', 'class' => 'form-horizontal' )) !!}
                         @include('admin.posts.create_form')
                           </div>
                     </div>                    
@@ -52,14 +52,24 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
    <script src="{{ asset('js/plugins/bootstrap-tagsinput.js')}}"></script>
-   <script src="{{ asset('js/draggablezone.js')}}"></script>
+   <script src="{{ asset('js/bootstrap-dropbox.js')}}"></script>
        <script>
 $(document).ready(function(e){
+$("form").keypress(function(e) {
+  //Enter key
+  if (e.which == 13) {
+    return false;
+  }
+});    
 $('#tags').tagsinput({
   maxTags: 3
 }); 
-
+ 
+$('#tags').tagsinput('items');
+$('#tags').val('['+$('#tags').val()+']');
  $(document).find('.bootstrap-tagsinput').addClass('form-control');
+ 
+ $('#myDropbox').dropbox({url:"{{  url('admin/api/files/') }}"});
 });       
    </script>    
 @endsection                        

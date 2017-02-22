@@ -90,7 +90,8 @@ z-index: -1;
 .img-area {
 	display: inline-block;
 	position: relative;
-	max-width: 100%;
+	max-width: 60%;
+        height: auto;
 	max-height: 500px;
 	overflow: hidden;
 	
