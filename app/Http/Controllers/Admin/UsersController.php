@@ -74,8 +74,6 @@ class UsersController extends Controller
             }else{
                 $request->only(['name','email','password','role']);
                 $user = User::create($request->all());
-//                $user->setPasswordAttribute($request->passwort);
-//                $user->save();
                 return Response::json($user, 200);                
             }
           }         

@@ -48,7 +48,6 @@ class Post extends Model {
     public function serch($keyword){
         
         return $this->with('user','tag')->where('title','LIKE','%'.$keyword.'%')->get(); 
-         
     }    
    
        

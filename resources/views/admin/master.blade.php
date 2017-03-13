@@ -21,7 +21,6 @@
     <link href="{{ asset('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/plugins/datepicker.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
 @yield('style')
@@ -93,11 +92,11 @@
                     <li  class="{{ Request::is('admin/posts') ? 'active' : '' }}">
                         <a href="#" data-toggle="collapse" data-target="#gallery" ><i class="fa fa-fw fa-picture-o" ></i> Galeria Zdjęć <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="gallery" class="collapse">
-                            <li class="" >
-                                <a href="">Albumy</a>
+                            <li class="{{ Request::is('admin/albums') ? 'active' : '' }}" >
+                                <a href="{{url('admin/albums')}}">Albumy</a>
                             </li>
                             <li class="">
-                                <a href="">Dodaj</a>
+                                <a href="">Zdjęcia</a>
                             </li>
                         </ul>
                     </li>   
@@ -131,7 +130,7 @@
         
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ asset('js/bootstrap.min.js')}}"></script>
-    <!-- <script src="js/plugins/laravel-bootstrap-modal-form.js"></script>!-->
+     <script src="{{ asset('js/plugins/laravel-bootstrap-modal-form.js')}}"></script>
         <script>
 $(document).ready(function(e){
    $.ajaxSetup({

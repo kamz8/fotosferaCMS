@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2">
+        <file>
+            <url>resources/views/admin/master.blade.php</url>
+            <bookmark id="2">
+                <name/>
+                <line>132</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/master.blade.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/posts/edit.blade.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/posts/create_form.blade.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/public/css/bs-dropbox.css</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/public/js/bootstrap-dropbox.js</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/files.blade.php</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Http/Requests/PhotoRequest.php</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Http/Controllers/Admin/PhotoController.php</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/albums/show.blade.php</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Photos.php</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Http/Requests/AlbumRequest.php</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Http/Controllers/Admin/UsersController.php</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Http/Controllers/Admin/AlbumController.php</file>
         </group>
     </open-files>
 </project-private>
