@@ -79,20 +79,32 @@
                         <a href="{{url('admin/users')}}"><i class="fa fa-fw fa-users"></i> Urzytkownicy</a>
                     </li>    
                   
-                    <li  class="{{ Request::is('posts') ? 'active' : '' }}">
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-thumb-tack"></i> Blog <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a class="{{ Request::is('admin/posts') ? 'active' : '' }}" href="{{url('admin/posts')}}">Wszytkie Wpisy</a>
+                    <li  class="{{ Request::is('admin/posts') ? 'active' : '' }}">
+                        <a href="#" data-toggle="collapse" data-target="#blog" ><i class="fa fa-fw fa-thumb-tack" ></i> Blog <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="blog" class="collapse">
+                            <li class="{{ Request::is('admin/posts') ? 'active' : '' }}" >
+                                <a href="{{url('admin/posts')}}">Wszytkie Wpisy</a>
                             </li>
-                            <li>
-                                <a class="{{ Request::is('admin/posts/create') ? 'active' : '' }}" href="{{url('admin/posts/create')}}">Dodaj</a>
+                            <li class="{{ Request::is('admin/posts/create') ? 'active' : '' }}">
+                                <a href="{{url('admin/posts/create')}}">Dodaj</a>
                             </li>
                         </ul>
                     </li>   
-                    <li  class="{{ Request::is('admin/files') ? 'active' : '' }}">
-                        <a href="{{url('admin/files')}}"><i class="fa fa-fw fa-files-o"></i> Menager Plików</a>
-                    </li>                    
+                    <li  class="{{ Request::is('admin/posts') ? 'active' : '' }}">
+                        <a href="#" data-toggle="collapse" data-target="#gallery" ><i class="fa fa-fw fa-picture-o" ></i> Galeria Zdjęć <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="gallery" class="collapse">
+                            <li class="" >
+                                <a href="">Albumy</a>
+                            </li>
+                            <li class="">
+                                <a href="">Dodaj</a>
+                            </li>
+                        </ul>
+                    </li>   
+                    
+                    <li  class="">
+                        <a href="#"><i class="fa fa-fw fa-gears"></i> Ustawienia</a>
+                    </li>                       
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -127,6 +139,7 @@ $(document).ready(function(e){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     }); 
+    $('#blog-toggle').dropdown('toggle');
 });        
 
  </script> 

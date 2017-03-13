@@ -39,6 +39,7 @@ Route::group(['middleware' => ['web'] ], function () {
             Route::post('/users/serch','UsersController@serch');
             //Blog resorces
             Route::get('/posts','PostController@jsonGet');
+            Route::post('/posts/serch','PostController@serch');
             Route::resource('/files','FilesController');
             
         });
@@ -73,8 +74,9 @@ Route::group(['middleware' => ['web'] ], function () {
 });  
 
 Route::resource('stream', 'StreamController');
-Route::get('stream/audio/track/{id}','StreamController@listen' );
-
+Route::get('stream/track/{id}','StreamController@listen' );
+Route::get('media/image/{id}','Admin\FilesController@image');
+//Route::get('tag/{tag}','PostController@withTag');
 Route::get('/galeria',  function (){
 
     return view('blog.gallery');

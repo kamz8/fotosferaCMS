@@ -7,10 +7,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Media;
+use App\Tag;
+use App\Http\Requests\PostRequest;
 
+use Auth;
 use Validator;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
@@ -28,22 +31,18 @@ class PostController extends Controller
 
     public function jsonGet(Request $request)
     {
-//        if ($request->ajax()){
-                $posts = Post::all();
-
+        if ($request->ajax()){
+                $posts = Post::with('user','tag')->get();
+                
                 if($posts->count() === 0) return Response::json([
                     'success' => true,
                     'message' => 'Nie utworzono jeszcze wpisu na blogu.'
                 ],200);
                     return $posts->toJson();
                                   
-//        }else return '';        
+        }else return '';        
     }    
-    
-    public function serch(){
-        
-        return;
-    }
+
     
             /**
      * Show the form for creating a new resource.
@@ -61,9 +60,18 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        $post = new Post($request->all());
+        $tags = new Tag;
+        $tagNames = explode(',', $request->tags);
+        Auth::user()->post()->save($post);
+        $tagIds = $tags->addList($tagNames);
+        
+        $post->tag()->attach($tagIds);
+        
+        return redirect('admin/posts/create');
+        
     }
 
     /**
@@ -85,7 +93,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        
+        return view('admin.posts.edit')->with(['post'=>$post]);
     }
 
     /**
@@ -95,9 +105,16 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $tags = new Tag;
+        $tagNames = explode(',', $request->tags);
+        $tagsIds = $tags->addList($tagNames);
+        $post->update($request->all());
+        $post->tag()->sync($tagsIds);
+        
+        return redirect('admin/posts');
     }
 
     /**
@@ -106,8 +123,33 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id,Request $request)
     {
-        //
+        if ($request->ajax()){ 
+            if(Post::findOrFail($id))
+                $post = Post::destroy($id);
+        }  
+        return Response::json($post);
     }
+    
+      public function serch(Request $request)
+      {
+          if ($request->ajax()){
+          
+              $keyword = $request->keyword;
+              
+                  $post = new Post();
+                  $serch_result = $post->serch($keyword);
+                  
+                  if(count($serch_result)==0) return Response::json([
+                      'success' => false,
+                      'message' => 'Nie znaleziono szukanej frazy.'
+                  ]);
+                  return Response::json($serch_result);
+                  
+             
+          }else    
+           return false;
+         
+      }
 }

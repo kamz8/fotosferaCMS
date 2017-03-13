@@ -26,6 +26,7 @@ class BlogController extends Controller
      */
     public function show($slug)
     {
-        //
+
+        return ;
     }    
 }

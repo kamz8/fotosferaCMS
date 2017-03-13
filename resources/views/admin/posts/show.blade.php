@@ -42,7 +42,7 @@
                     
                     <div class="table-responsive">
                         <table id="posts" class="table table-striped  table-hover text-center">
-                            <thead> <tr> <th>#</th> <th>Tytuł</th> <th>autor</th> <th>data</th> <th>akcja</th> </tr> </thead>
+                            <thead> <tr> <th>#</th> <th>Tytuł</th> <th>autor</th> <th>tagi</th> <th>data</th> <th>akcja</th> </tr> </thead>
                             <tbody>                   
                             </tbody>
                         </table>
@@ -58,11 +58,35 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-
+    <script src="{{asset('./js/ajaxAction.js')}}"></script>
     <script>
+        
         $(document).ready(function(){
                 var $this = '#posts';
-                var row = ''; 
+                
+                function PostView(data){
+                     var row = '';
+                    $.each(data, function(i, element) {
+                     var tags = '';
+                    if(typeof element.tag !== 'undefined'){
+                        $.each(element.tag, function(i,tag){
+                           tags +=  ' #' +tag.name;
+
+                        });
+                        if(tags.length <= 0) tags = '';
+                    } else ;
+                    var action = "{{ url('admin/posts') }}/" + element.id + "/edit";
+                    row += '<tr id="item' + element.id + '"><td>' + (i+=1) + '</td>';
+                    row += '<td>' + element.title + '</td>';           
+                    row += '<td>' + element.user.name + '</td>';
+                    row += '<td>' +tags + '</td>';
+                    row += '<td>' + element.created_at + '</td>';
+                    row += '<td><a href="' +  action + '" data-action="edit" class="btn btn-gray"><i class="fa fa-pencil"></i>&nbsp; edytuj</a> ';
+                    row += '<button value="' + element.id + '" data-action="delete" class="btn btn-danger "><i class="fa fa-remove"></i>&nbsp; usuń</button></td></tr>';  
+                    
+                    });
+                    return row;
+                }
     $.ajax({
         
         type: "get",
@@ -77,25 +101,41 @@
         {
           $($this + " tbody").html(' ');  
           $(".spinner").remove();  
-                 $.each(data, function(i, element) {
-                     
-                    row += '<tr id="item' + i + '"><td>' + (i+=1) + '</td>';
-                    row += '<td>' + element.title + '</td>';           
-                    row += '<td>' + element.author + '</td>';
-                    row += '<td>' + element.created_at + '</td>';
-                    row += '<td><button value="' + data.id + '" data-action="edit" class="btn btn-gray"><i class="fa fa-pencil"></i>&nbsp; edytuj</button> ';
-                    row += '<button value="' + data.id + '" data-action="delete" class="btn btn-danger "><i class="fa fa-remove"></i>&nbsp; usuń</button></td></tr>';    
-                    
-                });                
-                $($this + " tbody").append(row);            
-                console.log(data);
+                   var view = PostView(data);
+                $($this + " tbody").append(view);            
+                
         },
         
         error: function()
         {
           alert('500 internal server error - błąd po stronie servera przepraszamy! :(');  
         }        
-    });                
+    }); 
+    
+    $('#search').serch({
+     tableID: '#posts',
+     url: 'api/posts/serch',
+     model: PostView
+     
+    });
+//delete user and remove it from list
+    $(document).on("click", '[data-action="delete"]',function(){
+        var id = $(this).val();
+        var url = "posts";
+        $.ajax({
+
+            type: "DELETE",
+            url: url + '/' + id,
+            success: function (data) {
+                $('#posts').find("#item" + id).remove();
+                
+            },
+            error: function (data) {
+                alert('Error:', data);
+            }
+        });
+    });        
+    
  });    
     </script>
 @endsection                        

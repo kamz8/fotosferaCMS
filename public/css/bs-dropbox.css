@@ -1,0 +1,113 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2016-10-20, 00:17:10
+    Author     : User
+*/
+
+.dropbox {
+    font-size: 2.25rem;
+    background-color: #fff;
+    position: relative;
+    padding: 50px 20px; 
+
+    color: #555;
+    
+    outline: 4px dashed #888;
+    outline-offset: -15px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+}
+
+.dropbox .wrapper {
+    text-align: center;
+    margin: 15px;
+}
+
+
+.dropbox.has-advanced-upload {
+  background-color: white;
+  outline: 2px dashed black;
+  outline-offset: -30px;
+}
+
+.dropbox .input-file .dragndrop {
+  display: inline;
+}
+
+.image-placeholder{
+    transform: rotate(0deg);
+    font-size: 5em;
+    -webkit-transition: transform .15s ease, background-color .15s linear, font-size .15s ease, color .15s linear;
+    transition: transform .15s ease, background-color .15s linear, font-size .15s ease, color .15s linear;
+   
+}
+
+.dropbox.is-dragover .image-placeholder{
+    transform: rotate(5deg);
+    font-size: 5.2em;
+}
+
+.dropbox.is-dragover {
+  background-color: #f5f5f5 !important;
+  color: #555;
+  outline-offset: -30px;
+}
+
+.dropbox input[type="file"]{
+    width: 0.1px;
+height: 0.1px;
+opacity: 0;
+overflow: hidden;
+position: absolute;
+z-index: -1;
+}
+
+.box-file + label {
+    max-width: 80%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    
+    font-size: 16px;
+}
+
+.file-input + label > strong{
+    font-weight: bold;
+}
+
+
+
+/*add UI/UX elements to preview and delete image*/ 
+
+.dropbox .img-area {
+	display: inline-block;
+	position: relative;
+	max-width: 60%;
+        height: auto;
+	max-height: 500px;
+	overflow: hidden;
+	
+}
+
+.dropbox .img-area > .close {
+    display: none;
+    position: absolute !important;
+    top: 8px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+	
+    filter: alpha(opacity=50);
+	opacity: .5;	
+}
+
+.dropbox .img-area:hover .close {
+	display: inline-block;
+}

@@ -84,3 +84,32 @@ z-index: -1;
   color: #555;
   outline-offset: -30px;
 }
+
+/*add UI/UX elements to preview and delete image*/ 
+
+.img-area {
+	display: inline-block;
+	position: relative;
+	max-width: 60%;
+        height: auto;
+	max-height: 500px;
+	overflow: hidden;
+	
+}
+
+.img-area > .close {
+    display: none;
+    position: absolute !important;
+    top: 8px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+	
+    filter: alpha(opacity=50);
+	opacity: .5;	
+}
+
+.img-area:hover .close {
+	display: inline-block;
+}
