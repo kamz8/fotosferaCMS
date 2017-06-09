@@ -19,7 +19,7 @@
         defaults = {
             url: '',
             multiple: false,
-            
+            typeAllowed: '', //mimetype allowed
             show: function(id) {}
         };
 
@@ -92,7 +92,7 @@
                     processData: false,
                     mimeType:"multipart/form-data",
 
-                    success: function(data){
+                  success: function(data){
                             $element.find('.progress-bar').removeClass('active').addClass('progress-bar-success');
                             $('.box-image').remove();
 
