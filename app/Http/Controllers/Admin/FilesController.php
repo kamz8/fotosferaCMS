@@ -8,11 +8,21 @@ use App\Media;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-
+use Image;
 use App\Http\Requests;
 
 class FilesController extends Controller
 {
+//    protected function strToInt($x){
+//          $x = explode('/',$image->exif($options));
+//          if(count($x) !=1) $imageExif[] = (int)$x[0] / (int)$x[1];
+//          else $imageExif[] = $options;
+//       
+//    }
+    public function __construct() {
+        ini_set('memory_limit','256M');
+    }
+    
     public function index(){
         return view('admin.files');
     }
@@ -43,8 +53,9 @@ class FilesController extends Controller
                  
     }
     
-   public function destroy($id){
-        
+   public function destroy($id, Request $request){
+       
+       if ($request->ajax()){ 
         $media = new Media();
         $fileInfo = $media->findOrFail($id);
          
@@ -63,7 +74,7 @@ class FilesController extends Controller
                     "message" => 'coś poszło nie tak! ',
                     'log' => public_path().'/'.$fileInfo->path
            ],200);        
-        
+       }else return 'Brak dostępu'; 
         
    } 
    
@@ -74,4 +85,53 @@ class FilesController extends Controller
        $response->header('Content-Type', $image->mimetype);
        return $response;
    }
+   
+    public function thumbnail($id) {
+       $media = Media::findOrFail($id);
+       $image = Image::make($media->path); 
+       $image->fit(800, 600, function ($constraint) {
+        $constraint->upsize();
+        });
+        // create response and add encoded image data
+       $response = $image->response();       
+       return $response;
+   }  
+   
+    public function cover($id) {
+       $media = Media::findOrFail($id);
+       $image = Image::make($media->path); 
+       $image->fit(400, 400, function ($constraint) {
+        $constraint->upsize();
+        });
+        // create response and add encoded image data
+       $response = $image->response();       
+       return $response;
+   }
+
+    public function exif($id) {
+       $media = Media::findOrFail($id);
+       $image = Image::make($media->path); 
+       $ExifOptions = ['Model','FNumber', 'ExposureTime', 'ISOSpeedRatings', 'FocalLength'];
+       $FNumber = "";
+       $x = explode('/',$image->exif($image->exif('FNumber')));
+       if(count($x)!=1) $FNumber = (string)((int)$x[0] / (int)$x[1]);
+       
+       $x = explode('/',$image->exif($image->exif('FocalLength')));
+       $FocalLength = '';
+       if(count($x)!=1) $FocalLength = (string)((int)$x[0] / (int)$x[1]).'mm';       
+       
+       $imageExif = [
+        'Model' =>  $image->exif('Model'),
+         'FNumber' => $FNumber,
+        'ExposureTime'=> $image->exif('ExposureTime'),
+        'ISO' => $image->exif('ISOSpeedRatings'),
+        'FocalLength' => $FocalLength        
+       ];
+
+ 
+
+       return $imageExif;
+   }   
 }
+
+

@@ -11,7 +11,7 @@ use Exif;
 class ExifController extends Controller
 {
     public function index (){
-        Exif::exif(public_path('img/IMAG4999-2.jpg'));
+        Exif::exif(public_path('img/DSC_0703.jpg'));
         $image = Exif::get(['Model','ApertureFNumber', 'ExposureTime', 'ISOSpeedRatings', 'FocalLength', 'Lens']);
         return view('exif')->with('data',$image);
 

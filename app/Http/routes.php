@@ -24,6 +24,8 @@ Route::group(['middleware' => ['web'] ], function () {
         Route::get('/users','UsersController@show');
         Route::patch('/settings','SettingsController@updatePasswort');
         Route::resource('posts', 'PostController');
+        Route::resource('albums', 'AlbumController');
+        Route::resource('photos', 'PhotoController');
         Route::get('/files','FilesController@index');
         Route::group(['prefix' => 'api'], function () {
             
@@ -40,8 +42,12 @@ Route::group(['middleware' => ['web'] ], function () {
             //Blog resorces
             Route::get('/posts','PostController@jsonGet');
             Route::post('/posts/serch','PostController@serch');
-            Route::resource('/files','FilesController');
+            //
+            Route::get('/albums','AlbumController@jsonGet');
+            Route::post('/albums/serch','AlbumController@serch');
             
+            Route::resource('/files','FilesController');
+            Route::get('/photos','PhotoController@jsonGet');
         });
             Route::get('/moderator', function () {
                 
@@ -76,6 +82,8 @@ Route::group(['middleware' => ['web'] ], function () {
 Route::resource('stream', 'StreamController');
 Route::get('stream/track/{id}','StreamController@listen' );
 Route::get('media/image/{id}','Admin\FilesController@image');
+Route::get('media/image/thumbnail/{id}','Admin\FilesController@thumbnail');
+Route::get('media/image/cover/{id}','Admin\FilesController@cover');
 //Route::get('tag/{tag}','PostController@withTag');
 Route::get('/galeria',  function (){
 
@@ -99,5 +107,6 @@ Route::get('/post',  function (){
     return view('blog.post');
 });
 
-Route::get('exif', 'ExifController@index'); 
+Route::get('exif/{id}', 'Admin\FilesController@exif'); 
 
+Route::get('notifications','NotificationsController@stream');
