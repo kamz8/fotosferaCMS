@@ -28,7 +28,7 @@ class PhotoController extends Controller
     
     public function index()
     {
-        //
+        return view('admin.photos.show');
     }
 
     /**
@@ -38,7 +38,7 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        $albums = Albums::all();
+        $albums = Albums::pluck('title','id');
         return view('admin.photos.create')->with('albums',$albums);
     }
 
@@ -50,8 +50,10 @@ class PhotoController extends Controller
      */
     public function store(PhotoRequest $request)
     {
+        $album = Albums::find($request->album_id);
         $photo = new Photos($request->all());
         Auth::user()->photos()->save($photo);
+        $album->photos()->save($photo);
         return redirect('admin/photos/create');
     }
 
@@ -72,9 +74,20 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,Request $request)
     {
-        //
+        if ($request->ajax()){ 
+            $photos = Photos::find($id);
+            $albums = Albums::pluck('title','id');
+        }  
+        return Response::json(
+        [
+
+            'photos'=> $photos,
+            'albums' => $albums
+        ],
+        200
+    );        
     }
 
     /**
@@ -86,7 +99,17 @@ class PhotoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->ajax()){ 
+            $photos = Photos::findOrFail($id);
+            $album = Albums::find($request->album_id);
+            if($photos){
+                $photos->update($request->all());
+                $photos->albums()->associate($album);
+                $photos->save();
+            }
+                
+        }  
+        return Response::json($photos);
     }
 
     /**
@@ -95,8 +118,26 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        if ($request->ajax()){ 
+            if(Photos::findOrFail($id))
+                $photo = Photos::destroy($id);
+        }  
+        return Response::json($photo);
     }
+
+    public function jsonGet(Request $request)
+    {
+        if ($request->ajax()){
+                $photos = Photos::with('albums','media')->get();
+                
+                if($photos->count() === 0) return Response::json([
+                    'success' => true,
+                    'message' => 'Nie dodano tu jeszcze nic...'
+                ],200);
+                    return $photos;
+                                  
+        }else return '';        
+    }     
 }

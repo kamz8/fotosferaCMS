@@ -21,7 +21,19 @@
                 </div>
               </div>
                             
-              
+                <div class="form-group">
+                    <label for="album" class="col-sm-2 control-label">Zapisz do albumu</label>
+               
+                    <div class="col-sm-10">
+                     {{ Form::select('album_id',$albums,
+                        null,
+                        ['class' => 'form-control selectpicker','placeholder' => '-- Wybierz album --'] 
+                   ) }}                
+                   
+                    </div>
+                   
+                </div>   
+                             
 
               <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">

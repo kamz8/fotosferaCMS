@@ -26,7 +26,8 @@ class PhotoRequest extends Request
         return [
             'title'=>'required|max:30',
             'description' => 'max:400',
-            'media_id' => 'required'
+            'media_id' => 'required',
+            'album_id' =>'required'
         ];
     }
 }

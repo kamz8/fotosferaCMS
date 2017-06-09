@@ -31,7 +31,7 @@ class Albums extends Model
     }
     
     public function photos() {
-        return $this->hasMany('App\Photos','album_id');
+        return $this->hasMany('App\Photos');
     }   
     
     public function serch($keyword){

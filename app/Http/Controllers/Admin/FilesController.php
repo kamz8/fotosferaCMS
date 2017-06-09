@@ -19,7 +19,10 @@ class FilesController extends Controller
 //          else $imageExif[] = $options;
 //       
 //    }
-
+    public function __construct() {
+        ini_set('memory_limit','256M');
+    }
+    
     public function index(){
         return view('admin.files');
     }
@@ -50,8 +53,9 @@ class FilesController extends Controller
                  
     }
     
-   public function destroy($id){
-        
+   public function destroy($id, Request $request){
+       
+       if ($request->ajax()){ 
         $media = new Media();
         $fileInfo = $media->findOrFail($id);
          
@@ -70,7 +74,7 @@ class FilesController extends Controller
                     "message" => 'coś poszło nie tak! ',
                     'log' => public_path().'/'.$fileInfo->path
            ],200);        
-        
+       }else return 'Brak dostępu'; 
         
    } 
    

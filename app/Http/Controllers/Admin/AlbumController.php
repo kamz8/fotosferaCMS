@@ -25,16 +25,6 @@ class AlbumController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -43,7 +33,7 @@ class AlbumController extends Controller
     public function store(Request $request)
     {
         if($request->ajax()){
-            $album = Album::create($request->all());
+            $album = Albums::create($request->all());
             
             return $album;
         }
@@ -66,9 +56,13 @@ class AlbumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        //
+        if ($request->ajax()){ 
+            $album = Albums::findOrFail($id);
+   
+        }  
+        return Response::json($album);        
     }
 
     /**
@@ -80,7 +74,15 @@ class AlbumController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->ajax()){ 
+            $album = Albums::findOrFail($id);
+            if($album){
+                $album->update($request->all());
+            }
+                
+        }  
+        return Response::json($album);
+    
     }
 
     /**
@@ -89,9 +91,13 @@ class AlbumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        if ($request->ajax()){ 
+            if(Albums::findOrFail($id))
+                $album = Albums::destroy($id);
+        }  
+        return Response::json($album);
     }
 
       public function serch(Request $request)

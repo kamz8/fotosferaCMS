@@ -95,8 +95,8 @@
                             <li class="{{ Request::is('admin/albums') ? 'active' : '' }}" >
                                 <a href="{{url('admin/albums')}}">Albumy</a>
                             </li>
-                            <li class="">
-                                <a href="">Zdjęcia</a>
+                            <li class="{{ Request::is('admin/photos') ? 'active' : '' }}">
+                                <a href="{{url('admin/photos')}}">Zdjęcia</a>
                             </li>
                         </ul>
                     </li>   

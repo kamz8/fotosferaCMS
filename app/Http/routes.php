@@ -45,8 +45,9 @@ Route::group(['middleware' => ['web'] ], function () {
             //
             Route::get('/albums','AlbumController@jsonGet');
             Route::post('/albums/serch','AlbumController@serch');
-            Route::resource('/files','FilesController');
             
+            Route::resource('/files','FilesController');
+            Route::get('/photos','PhotoController@jsonGet');
         });
             Route::get('/moderator', function () {
                 
@@ -108,3 +109,4 @@ Route::get('/post',  function (){
 
 Route::get('exif/{id}', 'Admin\FilesController@exif'); 
 
+Route::get('notifications','NotificationsController@stream');

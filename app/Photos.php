@@ -12,7 +12,7 @@ class Photos extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'description', 'media_id', 'user_id'
+        'title', 'description', 'media_id', 'user_id','albums_id'
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -22,6 +22,8 @@ class Photos extends Model
     protected $hidden = [
          
     ];
+   
+
     public function user() {
         return $this->belongsTo('App\User');
     }
@@ -34,5 +36,6 @@ class Photos extends Model
         return $this->belongsTo('App\Albums');
     }
 
+ 
 
 }

@@ -64,7 +64,7 @@
 
                     <div class="form-group">
                             <label for="title">Tytuł albumu</label>
-                            <input class="form-control" placeholder="Wpisz nazwę urzytkownika" name="title" type="text">
+                            <input class="form-control" placeholder="Wpisz nazwę albumu" name="title" type="text">
                          </div>
         
                         <input id="item_id" value="0" type="hidden">
@@ -79,7 +79,7 @@
         </div>
     </div>
 </div>                
-                @include('admin.users.modal')
+                
 @endsection
 @section('script')
 
@@ -93,13 +93,16 @@
                 
                 function PostView(data){
                      var row = '';
+                     if($.isArray(data)==false) data =  new Array(data);
+                     //if(data type)
                     $.each(data, function(i, element) {
+                        
                     var action = "{{ url('admin/posts') }}/" + element.id + "/edit";
                     row += '<tr id="item' + element.id + '"><td>' + (i+=1) + '</td>';
                     row += '<td>' + element.title + '</td>';           
                     row += '<td>' + element.photos_count + '</td>';
                     row += '<td>' + element.created_at + '</td>';
-                    row += '<td><a href="#" data-action="edit" class="btn btn-gray"><i class="fa fa-pencil"></i>&nbsp; edytuj</a> ';
+                    row += '<td><button value="' + element.id + '" data-action="edit" class="btn btn-gray"><i class="fa fa-pencil"></i>&nbsp; edytuj</button> ';
                     row += '<button value="' + element.id + '" data-action="delete" class="btn btn-danger "><i class="fa fa-remove"></i>&nbsp; usuń</button></td></tr>';  
                     
                     });
@@ -140,7 +143,7 @@
 //delete user and remove it from list
     $(document).on("click", '[data-action="delete"]',function(){
         var id = $(this).val();
-        var url = "posts";
+        var url = "albums";
         $.ajax({
 
             type: "DELETE",
@@ -153,8 +156,115 @@
                 alert('Error:', data);
             }
         });
-    });        
+    });  
+
+    $(document).on("click", '[data-action="edit"]', function() {
+        var id = $(this).val();
+        var url = '{{url('admin/albums')}}' ;
+
+        //clear error state
+        $('form .form-group').removeClass('has-error');
+        $('.help-block').remove();
+        
+        $('#albumsModal').find('.modal-title').text('Edycja tytułu albumu')
+                $('#albumsModal').modal('toggle');
+        
+        $.get(url + '/' + id + '/edit', function (data) {
+            //success data
+
+            $.each(data, function (index, value){
+                $('[name="'+index+'"]').val(value);
+                
+            });
+            $('#item_id').val(data.id);
+            $('#btn-save').val("update");
+
+           
+        }); 
+        console.error;
+    });
     
+    //create new / update existing 
+    $("#btn-save").click(function (e) {
+        e.preventDefault(); 
+        var formData = {};
+        $("form").find("[name]").each(function(){
+        formData[ $(this).attr("name")] = $(this).val();
+        });
+
+        //used to determine the http verb to use [add=POST], [update=PUT]
+        var state = $('#btn-save').val();
+
+        var type = "POST"; //for creating new resource
+        var id = $('#item_id').val();
+        var my_url = 'http://localhost:8000/admin/albums';
+
+        if (state == "update"){
+            type = "PUT"; //for updating existing resource
+            my_url += '/' + id;
+
+        }
+
+
+        $.ajax({
+
+            type: type,
+            url: my_url,
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+                var lastId = $('tbody > tr').length + 1;
+
+    
+                var viewModel = PostView(data);
+
+                if (state == "add"){ //if user added a new record
+                    $('tbody').append(viewModel);
+                    console.log(lastId,"#item" + data.id+" td:first-child");
+                     $("#item" + data.id+" td:first-child").html(lastId);
+                }else{ //if user updated an existing record
+                    
+                    $("#item" + data.id).replaceWith( viewModel );
+
+                }
+
+                $('#albumsForm').trigger("reset");
+                
+                $('#albumsModal').modal('hide')
+            },
+            error: function (data) {
+                    
+                    switch (data.status)
+                    {
+                        case 400:
+                            //clear error state
+                            $('form .form-group').removeClass('has-error');
+                            $('.help-block').remove(); 
+                            //write error message
+                            $.each( data.responseJSON.errors, function( key, value ) {
+                                $("form").find('[name]').each(function (){
+                                if($(this).attr("name") == key  ){
+
+                                  $(this).parent().addClass('has-error');
+                                  $(this).parent().append(' <span class="help-block">'+value+'</span>');   
+                                }                                    
+                                });                                
+
+                            });            
+
+                            break;
+                        case 500:
+                                alert('something went wrong!');
+                            break;
+                    }                
+            }
+        });
+    });
+ 
+        $('.modal').on('hidden.bs.modal', function(){
+            $('.modal').find('.modal-title').text('Tworzenie nowego albumu.');
+            $(this).find('form')[0].reset();
+        });        
  });    
     </script>
 @endsection                        

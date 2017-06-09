@@ -19,7 +19,7 @@ $(document).ready(function (){
         
         $.get(url + '/' + id + '/edit', function (data) {
             //success data
-            console.log(data);
+            
             $.each(data, function (index, value){
                 $('[name="'+index+'"]').val(value);
                 
