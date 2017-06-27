@@ -29,7 +29,7 @@
         "psr-4": {
             "App\\": "app/",
             "Webbooster\\Timezones\\": "packages/Webbooster/timezones/src",
-            "Webbooster\\Exif\\": "packages/Webbooster/exif/src"            
+          
         }
     },
     "autoload-dev": {
