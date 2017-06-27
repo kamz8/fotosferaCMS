@@ -14,7 +14,7 @@ class Post extends Model {
     protected $fillable = [
         'title', 'content', 'media_id', 'user_id'
     ];
-
+    
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -23,7 +23,7 @@ class Post extends Model {
     protected $hidden = [
         'slug', 
     ];
-
+    protected $dates = ['published_at'];
 
     public function user() {
         return $this->belongsTo('App\User');

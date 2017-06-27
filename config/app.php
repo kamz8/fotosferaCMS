@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'pl',
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'pl',
+    'fallback_locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -157,6 +157,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\SettingsServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Watson\BootstrapForm\BootstrapFormServiceProvider::class,
         Pyaesone17\ActiveState\ActiveStateServiceProvider::class,
@@ -164,7 +165,7 @@ return [
         App\Providers\HelperServiceProvider::class,
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-
+        
     ],
 
     /*

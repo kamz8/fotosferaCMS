@@ -20,10 +20,10 @@ class HomeController extends Controller
     public function index()
     {
 
-        SEO::setTitle('Fotosfera');
+        SEO::setTitle(config('settings.site_name'));
 
-//        SEO::setDescription('This is my page description');
-//        SEO::opengraph()->setUrl('http://fotosfera.org.pl');
+        SEO::setDescription(config('settings.site_name'));
+        SEO::opengraph()->setUrl('http://fotosfera.org.pl');
 //        SEO::setCanonical('https://codecasts.com.br/lesson');
 //        SEO::opengraph()->addProperty('type', 'articles');
 //        SEO::twitter()->setSite('@LuizVinicius73');        

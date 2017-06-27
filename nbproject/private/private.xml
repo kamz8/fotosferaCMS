@@ -12,15 +12,16 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Http/Controllers/Admin/PhotoController.php</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/master.blade.php</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/database/seeds/OptionsTableSeed.php</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/options.blade.php</file>
             <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Http/routes.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Photos.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Albums.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Http/Controllers/Admin/FilesController.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/photos/show.blade.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Http/Controllers/Admin/AlbumController.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/photos/create_form.blade.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/users/modal.blade.php</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Http/Controllers/BlogController.php</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Providers/SettingsServiceProvider.php</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/posts/create.blade.php</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/settings/general.blade.php</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Options.php</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/posts/create_form.blade.php</file>
         </group>
     </open-files>
 </project-private>

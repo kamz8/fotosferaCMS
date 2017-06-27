@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Post;
+use Carbon\Carbon;
 
 class BlogController extends Controller
 {
@@ -16,17 +17,17 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
-    }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($slug)
-    {
+        $posts = Post::where('published_at', '<=', Carbon::now())
+            ->orderBy('published_at', 'desc')
+            ->paginate(config('settings.posts_per_page'));
 
-        return ;
-    }    
+        return view('blog.index', compact('posts'));
+    }
+
+    public function showPost($slug)
+    {
+        $post = Post::whereSlug($slug)->firstOrFail();
+
+        return view('blog.post')->withPost($post);
+    }   
 }

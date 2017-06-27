@@ -20,6 +20,7 @@ class CreatePostTable extends Migration
             $table->text('content');
             $table->integer('media_id')->unsigned();
             $table->timestamps();
+            $table->timestamp('published_at')->index();
             
             $table->foreign('media_id')->references('id')->on('media')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

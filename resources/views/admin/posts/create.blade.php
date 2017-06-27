@@ -25,8 +25,8 @@
                         </ol>
                     </div>
                 </div>
-                <!-- /.row -->   
-                <div class="col-lg-10 col-lg-offset-1 col-sx-12">
+                <!-- /.row -->
+                <div class="row">
                         @if (count($errors) > 0)
                             <div class="alert alert-danger">
                                 <ul>
@@ -35,17 +35,30 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        @endif                    
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Dodanie nowego subskrybenta.</h3>
-                        </div>
-                    <div class="panel-body ">
-                        {!! Form::open(array('url' => action('admin\PostController@store'), 'method' => 'post', 'class' => 'form-horizontal' )) !!}
-                        @include('admin.posts.create_form')
-                          </div>
-                    </div>                    
-                   
+                        @endif                  
+                    <div class="col-lg-10 col-md-2 col-sx-12">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Dodanie nowego subskrybenta.</h3>
+                            </div>
+                        <div class="panel-body ">
+                            {!! Form::open(array('url' => action('admin\PostController@store'), 'method' => 'post', 'class' => 'form-horizontal' )) !!}
+                            @include('admin.posts.create_form')
+                              </div>
+                        </div>                    
+                    </div>   
+                    <div class="col-lg-2 col-md-2 col-sx-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Opublikuj o.</h3>
+                            </div>
+                            <div class="panel-body ">
+                                
+                            </div>
+                        </div>  
+                    </div>
+                </div>        
 @endsection
 @section('script')
 

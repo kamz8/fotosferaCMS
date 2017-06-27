@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Options;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Validator; 
 use Session;
+
 class SettingsController extends Controller
 {
     public function show()
@@ -45,9 +47,26 @@ class SettingsController extends Controller
                 $validator->errors()->add('old_password', 'Stare hasło jest błędne!'); 
                 return redirect()->back()->withErrors($validator); 
             }
+ 
+    }   
+    
+    /**
+     * Updates the settings.
+     *
+     * @param int                                 $id
+     * @param \Illuminate\Contracts\Cache\Factory $cache
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update($id, Factory $cache)
+    {
+        // ...
 
+        // When the settings have been updated, clear the cache for the key 'settings':
+        $cache->forget('settings');
 
-        
-        
-    }        
+        // E.g., redirect back to the settings index page with a success flash message
+        return redirect()->route('admin.settings.index')
+            ->with('updated', true);
+    }    
 }

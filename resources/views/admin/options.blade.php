@@ -6,8 +6,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Ustawienia serwisu
-                            <small>Lista urzytkowników</small>
+                            Ustawienia 
+                            <small>Konfiguracja strony</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
@@ -22,21 +22,67 @@
                     </div>
                 </div>
                 <!-- /.row -->   
-                <div class="col-lg-10 col-lg-offset-1 col-sx-12">
+                <div class="col-lg-12 col-sx-12">
                     <div id="flash"></div>
-                    <h2>Ustawienia serwisu</h2>
+
                     <div class="row">
-                        <div class="col-sm-6 col-sm-offset-4 col-md-6 col-md-offset-5">
-                            <div class="input-group stylish-input-group">
-                                <input id="search" type="text" class="form-control"  placeholder="Wyszukaj..." >
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </span>
+
+                        </div>                        
+                        <ul id="myTab" class="nav nav-tabs" role="tablist">
+                          <li role="presentation" class="active"><a href="#general">Ogólne</a></li>
+                          <li role="presentation"><a href="#writing">Pisanie</a></li>
+                          <li role="presentation"><a href="#reading">Czytanie</a></li>
+                          <li role="presentation"><a href="#coments">Komentarze</a></li>
+                          <li role="presentation" hidden=""><a href="#">Media społecznościowe</a></li>
+                        </ul>
+                    
+                    <div class="tab-content" id="myTabContent">    
+                        <div class="tab-pane fade in active " role="tabpanel" id="general" aria-labelledby="general-tab"> 
+
+                                <h2 class="text-center">Ustawienia ogólne</h2>
+                                <div class="container">
+                            {!! Form::open(array('url' => 'admin/settings', 'method' => 'PATCH', 'class' => 'form-horizontal' )) !!}
+                              <div class="form-group">
+                                <label for="" class="col-md-2 col-sm-12 control-label ">Nazwa bloga:</label>
+                                <div class="col-sm-12 col-md-8">
+                                   {!! Form::text('sitetitle', null, ['class'=>'form-control','placeholder' => 'Tytuł bloga wyświetlany na pasku', 'required' =>'']) !!}
+                                </div>
+                              </div> 
+                              <div class="form-group">
+                                <label for="" class="col-md-2 col-sm-4 control-label ">Opis:</label>
+                                <div class="col-sm-12 col-md-8">
+                                   {!! Form::text('meta_description', null, ['class'=>'form-control','placeholder' => 'Kródki opis twojej strony', 'required' =>'']) !!}
+                                </div>
+                              </div>  
+                              <div class="form-group">
+                                <label for="" class="col-md-2 col-sm-4 control-label ">Słowa kluczowe:</label>
+                                <div class="col-sm-12 col-md-8">
+                                   {!! Form::text('meta_description', null, ['class'=>'form-control','placeholder' => 'Słowa kluczowe - "tagi"', 'required' =>'']) !!}
+                                </div>
+                              </div>                              
+                       
+                              <div class="form-group">
+                                <div class="col-md-offset-2 col-md-6 col-md-push-1">
+                                    <button type="submit" class="btn btn-md btn-gray btn-block container">Zapisz</button>
+                                </div>
+                              </div>
+                                {!! Form::close() !!}                                
                             </div>
                             
-                        </div>                        
 
-                    </div>
+                        </div>
+                        
+                        <div class="tab-pane fade" role="tabpanel" id="writing" aria-labelledby="writing-tab"> 
+                                
+                        </div>
+                        <div class="tab-pane fade" role="tabpanel" id="reading" aria-labelledby="reading-tab"> 
+
+                        </div>
+                        <div class="tab-pane fade" role="tabpanel" id="coments" aria-labelledby="coments-tab"> 
+
+                        </div>                         
+                    </div>    
+                       
 
                     
                     
@@ -44,8 +90,14 @@
 
 @endsection
 @section('script')
-    <script src="{{ asset('js/liveserch.js')}}"></script>
+
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+    <script>
+        $('#myTab a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        })
+    </script>
 
 @endsection                        

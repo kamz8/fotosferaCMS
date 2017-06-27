@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Post; 
+use App\Options;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -12,13 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
+        $this->call(OptionsTableSeed::class);
        User::create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'password' => 'admin123',
             'role' => 'admin',
         ]);
-    
+
     }
 }
