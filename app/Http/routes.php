@@ -110,3 +110,33 @@ Route::get('/post',  function (){
 Route::get('exif/{id}', 'Admin\FilesController@exif'); 
 
 Route::get('notifications','NotificationsController@stream');
+
+
+Route::get('/myapp/install/{key?}',  ['as' => 'install'], function($key = null)
+{
+    if($key == env('APP_KEY')){
+    try {
+      echo '<br>init migrate:install...';
+      Artisan::call('migrate:install');
+      echo 'done migrate:install';
+      
+      echo '<br>init with Sentry tables migrations...';
+      Artisan::call('migrate', [
+        '--package'=>'cartalyst/sentry'
+        ]);
+      echo 'done with Sentry';
+      echo '<br>init with app tables migrations...';
+      Artisan::call('migrate', [
+        '--path'     => "app/database/migrations"
+        ]);
+      echo '<br>done with app tables migrations';
+      echo '<br>init with Sentry tables seader...';
+      Artisan::call('db:seed');
+      echo '<br>done with Sentry tables seader';
+    } catch (Exception $e) {
+      Response::make($e->getMessage(), 500);
+    }
+  }else{
+    App::abort(404);
+  }
+});
