@@ -41,17 +41,21 @@
                 <!--end sidebar-->
                 <div class="col-xs-12 col-md-9">
                     <div class="container">
+                        @if(count($posts) > 0)
+                        @foreach($posts as $post)
+                        
                         <article class="row post">
                             <div class="col-xs-12 col-sm-5">
-                                <img class="img-responsive polaroid" src="https://static.pexels.com/photos/126792/pexels-photo-126792.jpeg" />
+                                <img class="img-responsive polaroid" src="{{url('media/image/'.$post->media_id)}}" />
                             </div>
                             <aside class="col-xs-12 col-sm-7">
-                                <h1>Title Lorem ipsum </h1>
-                                <p  class="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                <a class="btn btn-default">czytaj dalej...</a>
+                                <h1>{{$post->title}} </h1>
+                                <p  class="text-left">{{str_limit($post->content, 400, '...')}}</p>
+                                <a class="btn btn-default" href="{{$post->slug}}">czytaj dalej...</a>
                             </aside>
                         </article>
-
+                        @endforeach
+                        @endif
                     </div>    
                 </div>
             </div>

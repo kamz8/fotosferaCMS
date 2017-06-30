@@ -21,7 +21,7 @@ class BlogController extends Controller
             ->orderBy('published_at', 'desc')
             ->paginate(config('settings.posts_per_page'));
 
-        return view('blog.index', compact('posts'));
+        return view('blog.home', compact('posts'));
     }
 
     public function showPost($slug)
