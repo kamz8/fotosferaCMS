@@ -11,10 +11,10 @@ class OptionsTableSeed extends Seeder
      * @var array
      */    
     protected $default_name = [
-        'site_name' => 'Fotosfera', 
-        'meta_description' => 'Jakiś opis strony', 
+        'site_name' => '', 
+        'meta_description' => '', 
         'meta_keywords' => '' , 
-        'meta_author' => 'Kamil Żmijwoski',
+        'meta_author' => '',
         'posts_per_page' => '10',
         'admin_email' => ''
     ];

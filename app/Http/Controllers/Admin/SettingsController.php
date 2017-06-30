@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Validator; 
 use Session;
-
+use \Illuminate\Contracts\Cache\Factory;
 class SettingsController extends Controller
 {
     public function show()
@@ -53,20 +53,27 @@ class SettingsController extends Controller
     /**
      * Updates the settings.
      *
-     * @param int                                 $id
      * @param \Illuminate\Contracts\Cache\Factory $cache
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update($id, Factory $cache)
+    public function update(Factory $cache, Request $request)
     {
-        // ...
 
+        $options = new Options;
+        $options->saveChanges($request);
+        
         // When the settings have been updated, clear the cache for the key 'settings':
         $cache->forget('settings');
-
-        // E.g., redirect back to the settings index page with a success flash message
-        return redirect()->route('admin.settings.index')
+//
+//        // E.g., redirect back to the settings index page with a success flash message
+        return redirect()->back()
             ->with('updated', true);
-    }    
+    }   
+    
+    public function optionsShow(){
+        $options = Options::pluck('value', 'name')->all();;
+
+        return view('admin.options')->with('options', $options);
+    }
 }
