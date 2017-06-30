@@ -28,8 +28,8 @@
             
         ],
         "psr-4": {
-            "App\\": "app/",
-            "Webbooster\\Exif\\": "packages/Webbooster/exif/src"            
+            "App\\": "app/"
+            
         }
     },
     "autoload-dev": {
