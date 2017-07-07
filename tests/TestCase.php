@@ -22,4 +22,12 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         return $app;
     }
+    
+    static public function performance($callback) {
+       $start = microtime(true);
+       call_user_func($callback);
+       $duration = (microtime(true) - $start)*1000;
+       
+       return float($duration);
+    }    
 }

@@ -158,10 +158,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\SettingsServiceProvider::class,
+        App\Providers\HelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Watson\BootstrapForm\BootstrapFormServiceProvider::class,
         Pyaesone17\ActiveState\ActiveStateServiceProvider::class,
-        App\Providers\HelperServiceProvider::class,
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         

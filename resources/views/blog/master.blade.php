@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><img class="img-responsive" style="position: absolute;top: -12px;" src="img/logo.png"></a>
+                    <a class="navbar-brand" href="{{route('home')}}"><img class="img-responsive" style="position: absolute;top: -12px;" src="img/logo.png"></a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse navbar-right">
                     <ul class="nav navbar-nav">

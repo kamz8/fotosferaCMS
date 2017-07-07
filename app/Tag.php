@@ -3,8 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Tag extends Model {
+    
 
     /**
      * The attributes that are mass assignable.
@@ -28,7 +30,6 @@ class Tag extends Model {
         'created_at','updated_at','pivot','id'
     ];
     
-
     public function post() {
         return $this->belongsToMany('App\Post')->withTimestamps();
     }
@@ -50,6 +51,14 @@ class Tag extends Model {
         ;
     }
     
-
+    public function listTop() {
+        return $this->select(DB::raw('name, COUNT(*) as post_count'))
+                ->with('Post')
+                ->groupBy('name')
+                ->orderBy('post_count', 'desc')
+                ->limit(10)
+                ->get();
+        
+    }
 
 }

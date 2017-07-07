@@ -21,6 +21,7 @@ class FilesController extends Controller
 //    }
     public function __construct() {
         ini_set('memory_limit','256M');
+        
     }
     
     public function index(){
@@ -79,32 +80,43 @@ class FilesController extends Controller
    } 
    
    public function image($id) {
-       $image = Media::findOrFail($id);
-       $file = File::get($image->path);
-       $response = Response::make($file, 200);
-       $response->header('Content-Type', $image->mimetype);
-       return $response;
+       $media = Media::findOrFail($id);
+       $img = Image::cache(function($image) use ($media) {
+          $image = $image->make($media->path);
+       });
+
+       return Response::make($img, 200, ['Content-Type'=>$media->mimetype])
+               ->setMaxAge(604800) //seconds
+               ->setPublic();
    }
    
     public function thumbnail($id) {
        $media = Media::findOrFail($id);
-       $image = Image::make($media->path); 
-       $image->fit(800, 600, function ($constraint) {
-        $constraint->upsize();
-        });
+        $img = Image::cache(function($image) use ($media) {
+           $image = $image->make($media->path);
+           $image->fit(800, 600, function ($constraint) {
+           $constraint->upsize();
+        });            
+        });       
+
         // create response and add encoded image data
-       $response = $image->response();       
-       return $response;
+       
+       return Response::make($img, 200, ['Content-Type'=>$media->mimetype])
+               ->setMaxAge(604800) //seconds
+               ->setPublic();
    }  
    
     public function cover($id) {
        $media = Media::findOrFail($id);
-       $image = Image::make($media->path); 
-       $image->fit(400, 400, function ($constraint) {
-        $constraint->upsize();
-        });
+        $imageCacheed = Image::cache(function($image) use($media) { 
+           $image = $image->make($media->path); 
+           $image->fit(400, 400, function ($constraint) {
+           $constraint->upsize();
+        });            
+        });      
+
         // create response and add encoded image data
-       $response = $image->response();       
+       $response = $imageCacheed->response();       
        return $response;
    }
 

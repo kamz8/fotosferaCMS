@@ -11,7 +11,7 @@
 |
 */
 //public apications routes
-Route::get('/','BlogController@index');
+Route::get('/','BlogController@index')->name('home');
     
     
 Route::group(['middleware' => ['web'] ], function () {
@@ -75,12 +75,17 @@ Route::group(['middleware' => ['web'] ], function () {
     Route::post('password/reset', 'Auth\PasswordController@reset');    
 });  
 
+//resoure rute like image and anther media
 Route::resource('stream', 'StreamController');
 Route::get('stream/track/{id}','StreamController@listen' );
 Route::get('media/image/{id}','Admin\FilesController@image');
-Route::get('media/image/thumbnail/{id}','Admin\FilesController@thumbnail');
+Route::get('media/image/thumbnail/{id}','Admin\FilesController@thumbnail')->name('thumbinal');
 Route::get('media/image/cover/{id}','Admin\FilesController@cover');
-//Route::get('tag/{tag}','PostController@withTag');
+
+//Blog route
+Route::get('tag/{tag}','BlogController@tag')->name('tag');
+Route::get('/archiwum/{year}/{month}','BlogController@archive')->name('archive');
+
 Route::get('/galeria',  function (){
 
     return view('blog.gallery');
@@ -100,7 +105,7 @@ Route::get('/kontakt',  function (){
 Route::get('/post',  function (){
     SEO::setTitle('');
 
-    return view('blog.post');
+    return view('blog.post2');
 });
 
 Route::get('notifications','NotificationsController@stream');
@@ -140,3 +145,5 @@ Route::get('/route', function () {
 
     //
 });
+
+Route::get('/{slug}','BlogController@showPost');

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Post extends Model {
 
@@ -12,7 +13,7 @@ class Post extends Model {
      * @var array
      */
     protected $fillable = [
-        'title', 'content', 'media_id', 'user_id'
+        'title', 'content', 'media_id', 'user_id'.'published_at'
     ];
     
     /**
@@ -50,6 +51,14 @@ class Post extends Model {
         return $this->with('user','tag')->where('title','LIKE','%'.$keyword.'%')->get(); 
     }    
    
-       
-
+    public function archiveList() {
+       DB::statement('SET lc_time_names = \'pl_PL\' '); 
+       return $this->select(DB::raw('YEAR(created_at) year, MONTH(created_at) month, MONTHNAME(created_at) month_name, COUNT(*) post_count'))
+                ->groupBy('year')
+                ->groupBy('month')
+                ->orderBy('year', 'desc')
+                ->orderBy('month', 'desc')
+                ->get();
+    }
+    
 }

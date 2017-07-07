@@ -13,7 +13,7 @@ class HelperServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        return \App\Http\Helpers::class;
     }
 
     /**

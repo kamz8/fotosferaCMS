@@ -4,14 +4,19 @@
             <div class="row">
                 <article class="container post">
                     <header class="row seam text-center lead" >
-                        <h2>{{$post->title}}</h2>
-                        <span class="author"><i class="fa fa-user"></i> {{$post->user->name}} &nbsp;</span> <time><i class="fa fa-calendar"></i>&nbsp;{{$post->published_at}} </time> <span id="coment-count" class="b"><i class="fa fa-comments-o"></i>&nbsp;Komentarze({{$comments['count']}})</span> 
+                        <h2>Lorem ipsum dolor sit amet</h2>
+                        <span class="author"><i class="fa fa-user"></i> User &nbsp;</span> <time><i class="fa fa-calendar"></i> 10.08.2016 &nbsp;</time> <span id="coment-count" class="b"><i class="fa fa-comments-o"></i>&nbsp;Komentarze(10)</span> 
                         
                     </header>
                     <section class="container">
-                        <div class="text-center" id="post-img"><img class="polaroid" style="width: 80%; height: auto;" src="{{route('thumbinal',$post->id)}}"></div>
-                        <div id="content" class="content text-left">{{ $post->content}}</div>
-                        <span id="tags" class="tags"><i class="fa fa-tags"></i>@foreach($post->tag as $tag)<a href="{{route('tag',$tag->name)}}">{{$tag->name}}</a> @endforeach</span>
+                        <div class="text-center" id="post-img"><img class="polaroid" style="width: 80%; height: auto;" src="https://static.pexels.com/photos/126792/pexels-photo-126792.jpeg"></div>
+                        <div id="content" class="content text-left">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+
+                        </div>
+                        <span id="tags" class="tags"><i class="fa fa-tags"></i><a href="">minolta</a> <a href="">zdjęcia</a> <a href="">nikon</a></span>
                     </section>
                 </article>
                 
@@ -22,7 +27,6 @@
                             <h3>Komentarze</h3>
                         </header> 
                         <div class="clearfix"></div>
-                        @unless($comments['closed'])
                         <section class="well col-sm-8 clearfix">
                             <h4>Zostaw Komentarz:</h4>
                             <form role="form" id="comment-form">
@@ -62,8 +66,6 @@
                             </div>
 
                         </section>
-                        @endunless
-                        @include('layouts.comment',['closed'=>$comments['closed']])
                     </div>
                     
                 </section>
