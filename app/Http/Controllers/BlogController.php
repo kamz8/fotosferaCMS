@@ -21,10 +21,10 @@ class BlogController extends Controller
         $post = new Post;
         $tag = new Tag;
         $posts = $post->where('published_at', '<=', Carbon::now())
-            ->orderBy('published_at', 'desc')
+            ->orderBy('published_at', 'asc')
             ->paginate(config('settings.posts_per_page'));
         $archiveList = $post->archiveList();
-        $tagList = $tag->with('post')->orderBy('created_at','desc')->get();
+        $tagList = $tag->with('post')->orderBy('created_at','asc')->get();
         return view('blog.home', compact('posts', 'archiveList','tagList'));
     }
 
