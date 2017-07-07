@@ -5,7 +5,7 @@
                 <article class="container post">
                     <header class="row seam text-center lead" >
                         <h2>{{$post->title}}</h2>
-                        <span class="author"><i class="fa fa-user"></i> {{$post->user->name}} &nbsp;</span> <time><i class="fa fa-calendar"></i>&nbsp;{{$post->published_at}} </time> <span id="coment-count" class="b"><i class="fa fa-comments-o"></i>&nbsp;Komentarze({{$comments['count']}})</span> 
+                        <span class="author"><i class="fa fa-user"></i> {{$post->user->name}} &nbsp;</span> <time><i class="fa fa-calendar"></i>&nbsp;{{$post->published_at->diffForHumans()}} </time> <span id="coment-count" class="b"><i class="fa fa-comments-o"></i>&nbsp;Komentarze({{$comments['count']}})</span> 
                         
                     </header>
                     <section class="container">

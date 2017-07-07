@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,12 +9,12 @@
         <link rel="icon" href="favicon.ico">
 
         <!-- Bootstrap core CSS -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
         <!-- Main template -->
-        <link href="css/main.css" rel="stylesheet">
+        <link href="{{asset('css/main.css')}}" rel="stylesheet">
         <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-        <script src="js/vendor/ie-emulation-modes-warning.js"></script>
+        <!--[if lt IE 9]><script src="../../asset/js/ie8-responsive-file-warning.js"></script><![endif]-->
+        <script src="{{asset('js/vendor/ie-emulation-modes-warning.js')}}"></script>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -22,9 +22,9 @@
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>   
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/bootstrap-social.css">        
+        <script src="{{asset('js/vendor/modernizr-2.8.3-respond-1.4.2.min.js')}}"></script>   
+        <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
+        <link rel="stylesheet" href="{{asset('css/bootstrap-social.css')}}">        
         <meta name="csrf-token" content="{{ csrf_token() }}" />
     </head>
 
@@ -39,21 +39,21 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{route('home')}}"><img class="img-responsive" style="position: absolute;top: -12px;" src="img/logo.png"></a>
+                    <a class="navbar-brand" href="{{route('home')}}"><img class="img-responsive" style="position: absolute;top: -12px;" src="{{asset('img/logo.png')}}"></a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse navbar-right">
                     <ul class="nav navbar-nav">
-                        <li {!! Helpers::is_active('/') !!} ><a href="./">Główna</a></li>
-                        <li {!! Helpers::is_active('galeria') !!} ><a href="galeria">Galeria</a></li>
-                        <li {!! Helpers::is_active('o_mnie') !!} ><a href="o_mnie">O mnie</a></li>
-                        <li {!! Helpers::is_active('kontakt') !!} ><a href="kontakt">Kontakt</a></li>                        
+                        <li {!! Helpers::is_active('/') !!} ><a href="{{url('/')}}">Główna</a></li>
+                        <li {!! Helpers::is_active('galeria') !!} ><a href="{{url('galeria')}} ">Galeria</a></li>
+                        <li {!! Helpers::is_active('o_mnie') !!} ><a href="{{url('o_mnie')}}">O mnie</a></li>
+                        <li {!! Helpers::is_active('kontakt') !!} ><a href="{{url('kontakt')}}">Kontakt</a></li>                        
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
 
         <header class="blog-header">
-            <img src="img/IMAG4999-2.jpg">
+            <img src="{{asset('img/IMAG4999-2.jpg')}}">
         </header> 
 
         <div id="main-content" class="container-fluid">
@@ -85,12 +85,12 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="{{asset('js/jquery.js')}}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
 
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="../../asset/js/vendor/jquery.min.js"><\/script>')</script>
     <script>
             $(document).ready(function () {
                 $(".btn-toggle").click(function (e) {

@@ -225,6 +225,14 @@ post-img .polaroid::hover{
     border-bottom: #aaaaaa dashed 2px;
 }
 
+.page-header > span.subttitle{
+    font-size: 0.8em;
+    line-height: 24px;
+}
+
+.subttitle > .count{
+    font-weight: bold;
+}
 /*gallery styles*/
 
 

@@ -21,10 +21,13 @@ class BlogController extends Controller
         $post = new Post;
         $tag = new Tag;
         $posts = $post->where('published_at', '<=', Carbon::now())
-            ->orderBy('published_at', 'asc')
+            ->orderBy('published_at', 'desc')
             ->paginate(config('settings.posts_per_page'));
         $archiveList = $post->archiveList();
-        $tagList = $tag->with('post')->orderBy('created_at','asc')->get();
+        $tagList = $tag->with('post')->get()
+        ->sortByDesc(function($tag){
+            return $tag->post->count();
+        })->take(20);
         return view('blog.home', compact('posts', 'archiveList','tagList'));
     }
 
@@ -41,12 +44,26 @@ class BlogController extends Controller
     public function archive($year, $month) {
         $post = new Post;
         
-        return $post->whereYear('published_at', '=',$year )
+        $archive = new \Illuminate\Support\Collection;
+        $archive->title = (string)$month.' '.(string)$year;
+        $archive->post = $post->whereYear('published_at', '=',$year )
             ->WhereMonth('published_at', '=',$month)
-            ->orderBy('published_at', 'desc')->get(); 
+            ->orderBy('published_at', 'desc')->get();
+
+        return view('blog.archive')->with('archive', $archive); 
     }
-    
+    /**
+     * Display a listing of post with $tag
+     *
+     * @return \Illuminate\Http\Response
+     */    
     public function tag($tag) {
-        return Tag::with('post')->where('name','=',$tag)->get();
+        $tag = Tag::with(['post'=> function ($query){
+            $query->where('published_at', '<=', Carbon::now())
+            ->orderBy('published_at', 'desc')->get();
+            
+        }])->where('name','=',$tag)->get();
+        $tag->makeVisible('slug');
+        return view('blog.tag')->with('tag',$tag[0]);
     }
 }

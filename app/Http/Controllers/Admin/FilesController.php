@@ -20,7 +20,7 @@ class FilesController extends Controller
 //       
 //    }
     public function __construct() {
-        ini_set('memory_limit','256M');
+        ini_set('memory_limit','512M');
         
     }
     
@@ -101,9 +101,7 @@ class FilesController extends Controller
 
         // create response and add encoded image data
        
-       return Response::make($img, 200, ['Content-Type'=>$media->mimetype])
-               ->setMaxAge(604800) //seconds
-               ->setPublic();
+       return Response::make($img, 200, ['Content-Type'=>$media->mimetype]);
    }  
    
     public function cover($id) {
