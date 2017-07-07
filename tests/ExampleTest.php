@@ -13,7 +13,12 @@ class ExampleTest extends TestCase
      */
     public function testBasicExample()
     {
-        $this->visit('/')
-             ->see('Laravel');
+        return parent::performance(function () {
+            $this->visit('/')
+             ->see('Biały pies');
+        });
+        
     }
+    
+    
 }

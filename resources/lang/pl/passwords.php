@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Password Reset Language Lines
+    | Password Reminder Language Lines
     |--------------------------------------------------------------------------
     |
     | The following language lines are the default lines which match reasons
@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'password' => 'Passwords must be at least six characters and match the confirmation.',
-    'reset' => 'Your password has been reset!',
-    'sent' => 'We have e-mailed your password reset link!',
-    'token' => 'Ten token resetujący hasło jest błędny.',
-    'user' => "Nie możemy znaleść użytkownika o podanym adresie e-mail.",
+    'password' => 'Hasło musi mieć przynajmniej sześć znaków i zgadzać się z potwierdzeniem.',
+    'reset'    => 'Hasło zostało zresetowane!',
+    'sent'     => 'Przypomnienie hasła zostało wysłane!',
+    'token'    => 'Token resetowania hasła jest nieprawidłowy.',
+    'user'     => 'Nie znaleziono użytkownika z takim adresem e-mail.',
 
 ];

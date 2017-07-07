@@ -63,6 +63,7 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
         $post = new Post($request->all());
+        //$post->published_at = \Carbon\Carbon::now();
         $tags = new Tag;
         $tagNames = explode(',', $request->tags);
         Auth::user()->post()->save($post);

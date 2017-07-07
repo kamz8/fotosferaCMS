@@ -101,7 +101,7 @@
                         </ul>
                     </li>   
                     
-                    <li  class="{{ Request::is('admin/photos') ? 'active' : '' }}">
+                    <li  class="{{ Request::is('admin/options') ? 'active' : '' }}">
                         <a href="{{url('admin/options')}}"><i class="fa fa-fw fa-gears"></i> Ustawienia</a>
                     </li>                       
                 </ul>

@@ -24,11 +24,11 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Post::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->name,
-        'user_id' => $faker->randomNumber(),
+        'user_id' => 1,
         'slug' => $faker->slug,
         'title' => $faker->title,
         'content' => $faker->text,
-        'img_url' => $faker->url
+        'media_id' => $faker->randomNumber()
         
     ];
 });

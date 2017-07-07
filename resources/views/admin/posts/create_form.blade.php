@@ -35,6 +35,7 @@
                 </div>
               </div>
               {!! Form::hidden('media_id', '') !!}
+              {!! Form::hidden('published_at', Carbon\Carbon::now()) !!}
               {!! Form::close() !!}
                         
                               

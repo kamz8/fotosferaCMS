@@ -19,7 +19,6 @@ class OptionsTableSeed extends Seeder
         'admin_email' => ''
     ];
     
-    protected $default_value = [];
     /**
      * Run the database seeds.
      *
