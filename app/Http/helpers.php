@@ -1,6 +1,7 @@
 <?php
 namespace App\Http;
 use Illuminate\Support\Facades\Request;
+use Carbon\Carbon;
 
 class Helpers {
     
@@ -19,10 +20,16 @@ class Helpers {
     }    
 }
 
+
 if(!function_exists('getMonthName')){
     function getMonthName($monthNumber)
     {
-        return date("F", mktime(0, 0, 0, $monthNumber, 1));
+        $monthNames = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'];
+        $Mname = null;
+        foreach ($monthNames as $i => $name) {
+            if ($i+1 == $monthNumber) return $name;
+        }
+        
     }    
 }
 

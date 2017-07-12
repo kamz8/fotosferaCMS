@@ -9,6 +9,7 @@ use App\Post;
 use \App\Tag;
 use Carbon\Carbon;
 
+
 class BlogController extends Controller
 {
     /**
@@ -45,11 +46,11 @@ class BlogController extends Controller
         $post = new Post;
         
         $archive = new \Illuminate\Support\Collection;
-        $archive->title = (string)$month.' '.(string)$year;
+        $archive->title = \App\Http\getMonthName($month).' '.(string)$year;
         $archive->post = $post->whereYear('published_at', '=',$year )
             ->WhereMonth('published_at', '=',$month)
             ->orderBy('published_at', 'desc')->get();
-
+        
         return view('blog.archive')->with('archive', $archive); 
     }
     /**
