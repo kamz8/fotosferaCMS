@@ -114,8 +114,8 @@ class FilesController extends Controller
         });      
 
         // create response and add encoded image data
-       $response = $imageCacheed->response();       
-       return $response;
+       
+       return Response::make($imageCacheed, 200, ['Content-Type'=>$media->mimetype]);
    }
 
     public function exif($id) {

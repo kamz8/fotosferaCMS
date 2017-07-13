@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Post;
 use \App\Tag;
 use Carbon\Carbon;
-
+use SEO;
 
 class BlogController extends Controller
 {
@@ -19,6 +19,11 @@ class BlogController extends Controller
      */
     public function index()
     {
+        SEO::setTitle('Strona główna');
+
+        SEO::setDescription(config('settings.site_name'));
+        SEO::opengraph()->setUrl('http://fotosfera.org.pl');
+        
         $post = new Post;
         $tag = new Tag;
         $posts = $post->where('published_at', '<=', Carbon::now())
@@ -34,11 +39,18 @@ class BlogController extends Controller
 
     public function showPost($slug)
     {
+        
+
+        SEO::setDescription(config('settings.site_name'));
+        SEO::opengraph()->setUrl('http://fotosfera.org.pl');
+        
         $post = Post::with('tag')->whereSlug($slug)->firstOrFail();
         $comments=[
             'closed'=>true,
             'count'=>0
             ];
+        
+        SEO::setTitle($post->title);
         return view('blog.post')->with(compact('post','comments'));
     }  
     
@@ -50,7 +62,7 @@ class BlogController extends Controller
         $archive->post = $post->whereYear('published_at', '=',$year )
             ->WhereMonth('published_at', '=',$month)
             ->orderBy('published_at', 'desc')->get();
-        
+        SEO::setTitle($archive->title);
         return view('blog.archive')->with('archive', $archive); 
     }
     /**
@@ -65,6 +77,7 @@ class BlogController extends Controller
             
         }])->where('name','=',$tag)->get();
         $tag->makeVisible('slug');
+        SEO::setTitle('#'.$tag[0]->name);
         return view('blog.tag')->with('tag',$tag[0]);
     }
 }

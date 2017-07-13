@@ -85,12 +85,11 @@ Route::get('media/image/cover/{id}','Admin\FilesController@cover');
 //Blog route
 Route::get('tag/{tag}','BlogController@tag')->name('tag');
 Route::get('/archiwum/{year}/{month}','BlogController@archive')->name('archive');
-
-Route::get('/galeria',  function (){
-
-    return view('blog.gallery');
-});
-
+//Gallery route
+Route::get('/galeria','GalleryController@index');
+Route::get('/galeria/{id}','GalleryController@showAlbum');
+Route::get('/galeria/{album_id}/{photo_id}','GalleryController@showPhoto');
+//and rest things 
 Route::get('/o_mnie',  function (){
     SEO::setTitle('O mnie');
 
