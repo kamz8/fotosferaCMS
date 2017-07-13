@@ -158,7 +158,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\SettingsServiceProvider::class,
-        App\Providers\HelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Watson\BootstrapForm\BootstrapFormServiceProvider::class,
         Pyaesone17\ActiveState\ActiveStateServiceProvider::class,
@@ -212,7 +211,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form'     => Collective\Html\FormFacade::class,
         'HTML'     => Collective\Html\HtmlFacade::class,
-        'Helpers' => App\Http\Helpers::class,
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
         'Image' => Intervention\Image\Facades\Image::class
     ],
