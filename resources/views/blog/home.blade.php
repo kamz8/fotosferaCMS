@@ -12,7 +12,7 @@
                         
                         <article class="row post">
                             <div class="col-xs-12 col-sm-5">
-                                <img class="img-responsive polaroid" src="{{route('thumbinal', $post->media_id)}}" />
+                                <img class="img-responsive polaroid" src="{{route('thumbnail', $post->media_id)}}" />
                             </div>
                             <aside class="col-xs-12 col-sm-7">
                                 <h1>{{$post->title}} </h1>

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Image;
 use App\Http\Requests;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class FilesController extends Controller
 {
@@ -19,11 +20,24 @@ class FilesController extends Controller
 //          else $imageExif[] = $options;
 //       
 //    }
+    protected $placeholder;
+
+
     public function __construct() {
-        ini_set('memory_limit','256M');
-        
+        ini_set('memory_limit','512M');
+        $this->placeholder = storage_path('app/public/default-placeholder.png');
     }
     
+    protected function placeholderExeption(callable $callback){
+        
+        try {
+           if(is_callable($callback)) return call_user_func($callback());
+        } catch (ModelNotFoundException $e) {
+            $img_placeholder = Image::make($this->placeholder);
+            return $img_placeholder->response();
+        }        
+    } 
+
     public function index(){
         return view('admin.files');
     }
@@ -80,44 +94,58 @@ class FilesController extends Controller
    } 
    
    public function image($id) {
-       $media = Media::findOrFail($id);
-       $img = Image::cache(function($image) use ($media) {
-          $image = $image->make($media->path);
-       });
+       
+      return  $this->placeholderExeption(function () use ($id) {
+               $media = Media::findOrFail($id);
+               $img = Image::cache(function($image) use ($media) {
+                  $image = $image->make($media->path);
+               });  
+               return Response::make($img, 200, ['Content-Type'=>$media->mimetype])
+                       ->setMaxAge(604800) //seconds
+                       ->setPublic();           
+           });
 
-       return Response::make($img, 200, ['Content-Type'=>$media->mimetype])
-               ->setMaxAge(604800) //seconds
-               ->setPublic();
    }
    
     public function thumbnail($id) {
-       $media = Media::findOrFail($id);
-        $img = Image::cache(function($image) use ($media) {
-           $image = $image->make($media->path);
-           $image->fit(800, 600, function ($constraint) {
-           $constraint->upsize();
-        });            
-        });       
+        try {
+            $media = Media::findOrFail($id);
+            $img = Image::cache(function($image) use ($media) {
+               $image = $image->make($media->path);
+               $image->fit(800, 600, function ($constraint) {
+               $constraint->upsize();
+            });            
+            });       
 
-        // create response and add encoded image data
-       
-       return Response::make($img, 200, ['Content-Type'=>$media->mimetype])
-               ->setMaxAge(604800) //seconds
-               ->setPublic();
+            // create response and add encoded image data
+
+           return Response::make($img, 200, ['Content-Type'=>$media->mimetype]);            
+        } catch (ModelNotFoundException $e) {
+            $img_placeholder = Image::make($this->placeholder);
+            return $img_placeholder->response();
+        }
+     
    }  
    
     public function cover($id) {
-       $media = Media::findOrFail($id);
-        $imageCacheed = Image::cache(function($image) use($media) { 
-           $image = $image->make($media->path); 
-           $image->fit(400, 400, function ($constraint) {
-           $constraint->upsize();
-        });            
-        });      
+        try {
+           $media = Media::findOrFail($id);
+            $imageCacheed = Image::cache(function($image) use($media) { 
+               $image = $image->make($media->path); 
+               $image->fit(400, 400, function ($constraint) {
+               $constraint->upsize();
+            });            
+            });      
 
-        // create response and add encoded image data
-       $response = $imageCacheed->response();       
-       return $response;
+            // create response and add encoded image data
+
+           return Response::make($imageCacheed, 200, ['Content-Type'=>$media->mimetype]);            
+        } catch (ModelNotFoundException $e) {
+            $img_placeholder = Image::make($this->placeholder);
+            
+            return $img_placeholder->response();
+        }
+
    }
 
     public function exif($id) {

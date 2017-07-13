@@ -5,11 +5,11 @@
                 <article class="container post">
                     <header class="row seam text-center lead" >
                         <h2>{{$post->title}}</h2>
-                        <span class="author"><i class="fa fa-user"></i> {{$post->user->name}} &nbsp;</span> <time><i class="fa fa-calendar"></i>&nbsp;{{$post->published_at}} </time> <span id="coment-count" class="b"><i class="fa fa-comments-o"></i>&nbsp;Komentarze({{$comments['count']}})</span> 
+                        <span class="author"><i class="fa fa-user"></i> {{$post->user->name}} &nbsp;</span> <time><i class="fa fa-calendar"></i>&nbsp;{{$post->published_at->diffForHumans()}} </time> <span id="coment-count" class="b"><i class="fa fa-comments-o"></i>&nbsp;Komentarze({{$comments['count']}})</span> 
                         
                     </header>
                     <section class="container">
-                        <div class="text-center" id="post-img"><img class="polaroid" style="width: 80%; height: auto;" src="{{route('thumbinal',$post->id)}}"></div>
+                        <div class="text-center" id="post-img"><img class="polaroid" style="width: 80%; height: auto;" src="{{route('thumbnail',$post->media_id)}}"></div>
                         <div id="content" class="content text-left">{{ $post->content}}</div>
                         <span id="tags" class="tags"><i class="fa fa-tags"></i>@foreach($post->tag as $tag)<a href="{{route('tag',$tag->name)}}">{{$tag->name}}</a> @endforeach</span>
                     </section>

@@ -13,7 +13,7 @@ class Post extends Model {
      * @var array
      */
     protected $fillable = [
-        'title', 'content', 'media_id', 'user_id'.'published_at'
+        'title', 'content', 'media_id', 'user_id','published_at'
     ];
     
     /**
@@ -24,8 +24,10 @@ class Post extends Model {
     protected $hidden = [
         'slug', 
     ];
+
     protected $dates = ['published_at'];
 
+    //Eloquent: Relationships defining
     public function user() {
         return $this->belongsTo('App\User');
     }
@@ -37,7 +39,9 @@ class Post extends Model {
     public function tag() {
         return $this->belongsToMany('App\Tag', 'post_tag')->withTimestamps();
     }    
-
+    //end
+    
+    //setters artibute
     public function setTitleAttribute($value) {
         $this->attributes['title'] = $value;
 
@@ -46,6 +50,8 @@ class Post extends Model {
         }
     }
     
+    //getters arttribute
+
     public function serch($keyword){
         
         return $this->with('user','tag')->where('title','LIKE','%'.$keyword.'%')->get(); 

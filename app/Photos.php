@@ -23,7 +23,6 @@ class Photos extends Model
          
     ];
    
-
     public function user() {
         return $this->belongsTo('App\User');
     }
@@ -35,7 +34,10 @@ class Photos extends Model
     public function albums () {
         return $this->belongsTo('App\Albums');
     }
+    
 
- 
+    public function setExifAttribute($array=null) {
+        return $this->attributes['exif'] = $array;
+    }    
 
 }

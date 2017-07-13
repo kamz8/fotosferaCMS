@@ -30,14 +30,5 @@ class HomeController extends Controller
         return view('blog.home');
     }
     
-    public function about()
-    {
-        
-    } 
-    
-    public function contact()
-    {
-        
-    } 
-    
+
 }

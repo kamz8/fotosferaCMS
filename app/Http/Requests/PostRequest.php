@@ -24,7 +24,7 @@ class PostRequest extends Request
     public function rules()
     {
         return [
-            'title'=> 'required|max:50',
+            'title'=> 'required|max:50|unique:posts,title', 
             'content' => 'required',
             'tags' => 'max:225'
         ];

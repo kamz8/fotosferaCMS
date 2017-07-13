@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Post;
 use \App\Tag;
 use Carbon\Carbon;
+use SEO;
 
 class BlogController extends Controller
 {
@@ -18,35 +19,65 @@ class BlogController extends Controller
      */
     public function index()
     {
+        SEO::setTitle('Strona główna');
+
+        SEO::setDescription(config('settings.site_name'));
+        SEO::opengraph()->setUrl('http://fotosfera.org.pl');
+        
         $post = new Post;
         $tag = new Tag;
         $posts = $post->where('published_at', '<=', Carbon::now())
-            ->orderBy('published_at', 'asc')
+            ->orderBy('published_at', 'desc')
             ->paginate(config('settings.posts_per_page'));
         $archiveList = $post->archiveList();
-        $tagList = $tag->with('post')->orderBy('created_at','asc')->get();
+        $tagList = $tag->with('post')->get()
+        ->sortByDesc(function($tag){
+            return $tag->post->count();
+        })->take(20);
         return view('blog.home', compact('posts', 'archiveList','tagList'));
     }
 
     public function showPost($slug)
     {
+        
+
+        SEO::setDescription(config('settings.site_name'));
+        SEO::opengraph()->setUrl('http://fotosfera.org.pl');
+        
         $post = Post::with('tag')->whereSlug($slug)->firstOrFail();
         $comments=[
             'closed'=>true,
             'count'=>0
             ];
+        
+        SEO::setTitle($post->title);
         return view('blog.post')->with(compact('post','comments'));
     }  
     
     public function archive($year, $month) {
         $post = new Post;
         
-        return $post->whereYear('published_at', '=',$year )
+        $archive = new \Illuminate\Support\Collection;
+        $archive->title = \App\Http\getMonthName($month).' '.(string)$year;
+        $archive->post = $post->whereYear('published_at', '=',$year )
             ->WhereMonth('published_at', '=',$month)
-            ->orderBy('published_at', 'desc')->get(); 
+            ->orderBy('published_at', 'desc')->get();
+        SEO::setTitle($archive->title);
+        return view('blog.archive')->with('archive', $archive); 
     }
-    
+    /**
+     * Display a listing of post with $tag
+     *
+     * @return \Illuminate\Http\Response
+     */    
     public function tag($tag) {
-        return Tag::with('post')->where('name','=',$tag)->get();
+        $tag = Tag::with(['post'=> function ($query){
+            $query->where('published_at', '<=', Carbon::now())
+            ->orderBy('published_at', 'desc')->get();
+            
+        }])->where('name','=',$tag)->get();
+        $tag->makeVisible('slug');
+        SEO::setTitle('#'.$tag[0]->name);
+        return view('blog.tag')->with('tag',$tag[0]);
     }
 }

@@ -24,7 +24,7 @@ class Albums extends Model
          
     ];
         
-    protected $appends = ['photos_count'];
+    protected $appends = ['photos_count','cover_img'];
     
     public function user() {
         return $this->belongsTo('App\User');
@@ -44,4 +44,12 @@ class Albums extends Model
     {
         return $this->photos->count();
     }    
+    public function getCoverImgAttribute()
+    {
+        $cover_image = 0;
+        $photosFirst = $this->photos->first();
+        if(count($photosFirst)) $cover_image = $photosFirst->media->id;
+            else $cover_image = 0;
+        return $cover_image;
+    }     
 }

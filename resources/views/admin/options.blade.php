@@ -78,7 +78,7 @@
                               <div class="form-group">
                                 <label for="" class="col-md-2 col-sm-4 control-label ">Email administracyjny:</label>
                                 <div class="col-sm-12 col-md-8">
-                                   {!! Form::email('superadmin_email', null, ['class'=>'form-control','placeholder' => 'example@example.com', 'required' =>'']) !!}
+                                   {!! Form::email('admin_email', null, ['class'=>'form-control','placeholder' => 'example@example.com', 'required' =>'']) !!}
                                 </div>
                               </div>           
                              
