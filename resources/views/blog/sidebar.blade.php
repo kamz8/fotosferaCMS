@@ -13,7 +13,7 @@
                     <aside id="tags" >
                         <h4><i class="fa fa-tags"></i>Tags</h4>
                         @foreach($tagList as $tag)
-                        <a href="{{route('tag',$tag->name)}}" style="font-size: {{Helpers::tagSize($tag->post->count())}}em">#{{$tag->name}}</a>
+                        <a href="{{route('tag',$tag->name)}}" style="font-size: {{tagSize($tag->post->count())}}em">#{{$tag->name}}</a>
                         @endforeach
                     </aside>  
                 </nav>

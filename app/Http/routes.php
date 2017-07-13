@@ -78,9 +78,9 @@ Route::group(['middleware' => ['web'] ], function () {
 //resoure rute like image and anther media
 Route::resource('stream', 'StreamController');
 Route::get('stream/track/{id}','StreamController@listen' );
-Route::get('media/image/{id}','Admin\FilesController@image');
-Route::get('media/image/thumbnail/{id}','Admin\FilesController@thumbnail')->name('thumbinal');
-Route::get('media/image/cover/{id}','Admin\FilesController@cover');
+Route::get('media/image/{id}','Admin\FilesController@image')->name('image');
+Route::get('media/image/thumbnail/{id}','Admin\FilesController@thumbnail')->name('thumbnail');
+Route::get('media/image/cover/{id}','Admin\FilesController@cover')->name('cover');
 
 //Blog route
 Route::get('tag/{tag}','BlogController@tag')->name('tag');

@@ -43,10 +43,10 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse navbar-right">
                     <ul class="nav navbar-nav">
-                        <li {!! Helpers::is_active('/') !!} ><a href="{{url('/')}}">Główna</a></li>
-                        <li {!! Helpers::is_active('galeria') !!} ><a href="{{url('galeria')}} ">Galeria</a></li>
-                        <li {!! Helpers::is_active('o_mnie') !!} ><a href="{{url('o_mnie')}}">O mnie</a></li>
-                        <li {!! Helpers::is_active('kontakt') !!} ><a href="{{url('kontakt')}}">Kontakt</a></li>                        
+                        <li {!! is_active('/') !!} ><a href="{{url('/')}}">Główna</a></li>
+                        <li {!! is_active('galeria') !!} ><a href="{{url('galeria')}} ">Galeria</a></li>
+                        <li {!! is_active('o_mnie') !!} ><a href="{{url('o_mnie')}}">O mnie</a></li>
+                        <li {!! is_active('kontakt') !!} ><a href="{{url('kontakt')}}">Kontakt</a></li>                        
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>

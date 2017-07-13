@@ -21,7 +21,7 @@ class GalleryController extends Controller
         $albums = Albums::all();
         $albums->makeHidden(['photos']);
         
-        return $albums;
+        return view('blog.gallery')->with('albums',$albums);
     }
     
     function showAlbum($id) {
