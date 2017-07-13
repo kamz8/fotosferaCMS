@@ -28,7 +28,7 @@ class GalleryController extends Controller
         $album = Albums::with('photos')->findOrFail($id);
         $album->makeHidden('cover_img');
         
-        return $album;
+        return view('blog.album')->with('album',$album);
     } 
 
     function showPhoto($album_id,$photo_id) {

@@ -58,7 +58,7 @@ class BlogController extends Controller
         $post = new Post;
         
         $archive = new \Illuminate\Support\Collection;
-        $archive->title = \App\Http\getMonthName($month).' '.(string)$year;
+        $archive->title = getMonthName($month).' '.(string)$year;
         $archive->post = $post->whereYear('published_at', '=',$year )
             ->WhereMonth('published_at', '=',$month)
             ->orderBy('published_at', 'desc')->get();
