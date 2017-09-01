@@ -2,6 +2,7 @@
 
 @push('stylesheet')
     <link href="{{asset('css/lightbox.css')}}" rel="stylesheet"></script>
+    
 @endpush
 
 @section('content')
@@ -29,8 +30,9 @@
           <div class="row is-flex">
              
               <div class="col-lg-9 col-md-8 col-xs-12">
-                 <div class="img-wrapper">
-                      <img src="https://images.pexels.com/photos/219604/pexels-photo-219604.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb">
+                 <div class="img-wrapper" fullsceenEnable>
+                     
+                      <img src="https://images.pexels.com/photos/445109/pexels-photo-445109.jpeg">
                   </div>
                   <div class="wrapper-overlay"><a href="#" class="close expand" title="Uruchom tryb pełnoekranowy" aria-label="Fullscreen" data-role="fullscreen"><i class="fa fa-expand"></i></a></div>
               </div>
@@ -67,7 +69,7 @@
                                   <span data-label="comment_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ante erat, laoreet eu sem at, semper accumsan turpis.</span> 
                               </div>
                               <div class="comment-item">
-                                  <button class="close" aria-label="Delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                  <button class="close" aria-label="Delete" title="Usuń komentarz" data-toggle="tooltip"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                   <span class="bold" data-label="user_name">Kowalski</span>
                                   <span data-label="comment_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ante erat, laoreet eu sem at, semper accumsan turpis.</span> 
                               </div>                              
@@ -89,5 +91,10 @@
       <div class="lightbox-control right hidden-xs"><a href="#" role="button"><i class="fa fa-chevron-right"></i></a></div>       
   </div>
  
-</div>    
+</div> 
+@push('script')
+<script src="{{asset('js/jquery.fullscreen.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/bootstrap.lightbox.js')}}" type="text/javascript"></script>
+@endpush
+
 @endsection

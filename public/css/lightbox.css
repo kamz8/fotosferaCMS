@@ -45,7 +45,7 @@ and open the template in the editor.
     height: 100%;
     position: relative;
     text-align: center;
-    -moz-user-select: none;
+    -moz-user-simg-wrapperselect: none;
     white-space: nowrap;
 
 }
@@ -260,9 +260,9 @@ body.modal-open-noscroll {
 @media (min-width: 320px) and (max-width: 768px) {
     .lightbox .modal-dialog,
     .lightbox .modal-content{
-        height: 100vh;
-        width: 100vw;
-        
+    height: 100vh;
+    width: 100vw;
+    overflow: auto;
     }
     .lightbox .modal-content{
         border: none;
@@ -290,6 +290,10 @@ body.modal-open-noscroll {
     .lightbox [class*="col-"]{
         padding: 0px ;
     }
+    .lightbox .caption > section{
+       overflow:visible;
+       margin-bottom: 80px;
+    } 
 }
 
 
@@ -347,4 +351,24 @@ body.modal-open-noscroll {
      min-height: 700px;   
 
     }
+}
+
+.fullScreen:-webkit-full-screen {
+  width: 100vw;
+  height: 100vh;
+}
+
+.fullScreen:-moz-full-screen {
+  width: 100vw;
+  height: 100vh;
+}
+
+.fullScreen:-ms-fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+
+.fullScreen:fullscreen {
+  width: 100vw;
+  height: 100vh;
 }

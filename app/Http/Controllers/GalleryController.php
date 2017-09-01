@@ -31,18 +31,19 @@ class GalleryController extends Controller
         return view('blog.album')->with('album',$album);
     } 
 
-    function showPhoto($album_id,$photo_id) {
+    function showPhoto($photo_id) {
         $photos = new Photos;
-        $photo = $photos->findOrFail($photo_id);
+        $photo = $photos->with('media','user')->findOrFail($photo_id);
+        
         $image = Image::make($photo->media->path);
-        $imageExif = [
-            'Model' =>  $image->exif('Model'),
-             'FNumber' => $image->exif('FNumber'),
-            'ExposureTime'=> $image->exif('ExposureTime'),
-            'ISO' => $image->exif('ISOSpeedRatings'),
-            'FocalLength' => $image->exif('FocalLength'),       
-       ];
-        $photo->exif = $imageExif;
+//        $imageExif = [
+//            'Model' =>  $image->exif('Model'),
+//             'FNumber' => $image->exif('FNumber'),
+//            'ExposureTime'=> $image->exif('ExposureTime'),
+//            'ISO' => $image->exif('ISOSpeedRatings'),
+//            'FocalLength' => $image->exif('FocalLength'),       
+//       ];
+//        $photo->exif = $imageExif;
         return $photo;
     }    
 }

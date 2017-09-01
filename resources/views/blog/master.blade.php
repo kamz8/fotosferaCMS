@@ -91,7 +91,6 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
 
-    <script>window.jQuery || document.write('<script src="../../asset/js/vendor/jquery.min.js"><\/script>')</script>
     <script>
             $(document).ready(function () {
                 $(".btn-toggle").click(function (e) {
@@ -107,7 +106,8 @@ $(document).ready(function(e){
         }
     }); 
 });            
-    </script>    
+    </script>   
+@stack('script')    
 </body>
 </html>
 

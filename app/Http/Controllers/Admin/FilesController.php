@@ -31,7 +31,7 @@ class FilesController extends Controller
     protected function placeholderExeption(callable $callback){
         
         try {
-           if(is_callable($callback)) return call_user_func($callback());
+           if(is_callable($callback)) return call_user_func($callback);
         } catch (ModelNotFoundException $e) {
             $img_placeholder = Image::make($this->placeholder);
             return $img_placeholder->response();
