@@ -214,6 +214,9 @@ body.modal-open-noscroll {
     line-height: .5;
     color: #555;
 }
+.list-icon .theInfo > span::after {
+    content: "\00a0\00a0";
+}
 .list-icon .theInfo {
     color: #555;
     font-size: 12px;
@@ -371,4 +374,7 @@ body.modal-open-noscroll {
 .fullScreen:fullscreen {
   width: 100vw;
   height: 100vh;
+}
+.lightbox [hidden]{
+    display: none;
 }

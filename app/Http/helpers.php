@@ -27,7 +27,6 @@ if(!function_exists('getMonthName')){
     function getMonthName($monthNumber)
     {
         $monthNames = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'];
-        $Mname = null;
         foreach ($monthNames as $i => $name) {
             if ($i+1 == $monthNumber) return $name;
         }
@@ -48,5 +47,30 @@ if(!function_exists('cover_image')){
 if(!function_exists('thumbnail')){
     function thumbnail($image_id){
         return route('thumbnail', $image_id);
+    }
+}
+
+if(!function_exists('string_to_math')){
+function callback1($m) {
+    return string_to_math($m[1]);
+}
+function callback2($n,$m) {
+    $o=$m[0];
+    $m[0]=' ';
+    return $o=='+' ? $n+$m : ($o=='-' ? $n-$m : ($o=='*' ? $n*$m : $n/$m));
+}
+function string_to_math($s){ 
+    while ($s != ($t = preg_replace_callback('/\(([^()]*)\)/','callback1',$s))) $s=$t;
+    preg_match_all('![-+/*].*?[\d.]+!', "+$s", $m);
+    return array_reduce($m[0], 'callback2');
+}
+}
+
+
+
+if(!function_exists('ETime')){
+    function ETime($exposure){
+        $parts = explode("/", $exposure);
+        return implode("/", array(1, $parts[1]/$parts[0]));        
     }
 }

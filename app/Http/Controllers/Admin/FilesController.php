@@ -162,7 +162,7 @@ class FilesController extends Controller
        
        $imageExif = [
         'Model' =>  $image->exif('Model'),
-         'FNumber' => $FNumber,
+        'FNumber' => $FNumber,
         'ExposureTime'=> $image->exif('ExposureTime'),
         'ISO' => $image->exif('ISOSpeedRatings'),
         'FocalLength' => $FocalLength        
