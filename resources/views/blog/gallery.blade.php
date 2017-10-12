@@ -6,7 +6,7 @@
                 <figure class="col-sx-12 col-md-3 ">
                     <figcaption class="col-sx-12 text-center"><h1>{{$album->title}}</h1></figcaption>
                     
-                    <div class="thumbnail-img polaroid"><a href=""><img class="center-block img-responsive" src="{{thumbnail($album->cover_img)}}" alt=""></a></div>
+                    <div class="thumbnail-img polaroid"><a href="{{route('gallery',$album->id)}}"><img class="center-block img-responsive" src="{{thumbnail($album->cover_img)}}" alt=""></a></div>
                     
                 </figure>
     @endforeach

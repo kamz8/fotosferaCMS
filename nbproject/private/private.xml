@@ -11,16 +11,6 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/blog/post.blade.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/blog/home.blade.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Post.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Http/routes.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Http/Controllers/BlogController.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/blog/master.blade.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/blog/sidebar.blade.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Tag.php</file>
-            <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Http/Controllers/Admin/FilesController.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

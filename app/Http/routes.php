@@ -13,7 +13,6 @@
 //public apications routes
 Route::get('/','BlogController@index')->name('home');
     
-    
 Route::group(['middleware' => ['web'] ], function () {
     
     //admin controll panel grouped routes
@@ -87,8 +86,9 @@ Route::get('tag/{tag}','BlogController@tag')->name('tag');
 Route::get('/archiwum/{year}/{month}','BlogController@archive')->name('archive');
 //Gallery route
 Route::get('/galeria','GalleryController@index');
-Route::get('/galeria/{id}','GalleryController@showAlbum');
-Route::get('/galeria/{album_id}/{photo_id}','GalleryController@showPhoto');
+Route::get('/galeria/{id}','GalleryController@showAlbum')->name('gallery');
+Route::get('/p/{photo_id}','GalleryController@showPhoto')->name('showPhoto');
+
 //and rest things 
 Route::get('/o_mnie',  function (){
     SEO::setTitle('O mnie');
