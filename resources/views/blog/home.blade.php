@@ -16,7 +16,7 @@
                             </div>
                             <aside class="col-xs-12 col-sm-7">
                                 <h1>{{$post->title}} </h1>
-                                <p  class="text-left">{{str_limit($post->content, 400, '...')}}</p>
+                                <p  class="text-left">{{str_limit(strip_tags($post->content), 400, '...')}}</p>
                                 <a class="btn btn-default" href="{{$post->slug}}">czytaj dalej...</a>
                             </aside>
                         </article>

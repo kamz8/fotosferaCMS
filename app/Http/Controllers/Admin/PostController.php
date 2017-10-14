@@ -10,9 +10,11 @@ use App\Post;
 use App\Media;
 use App\Tag;
 use App\Http\Requests\PostRequest;
+use App\Http\Requests\UpdatePostRequest;
 
 use Auth;
 use Validator;
+use Purifier;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -62,6 +64,7 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
+        $request->replace(['content', Purifier::clean($request->input('content') ) ]);
         $post = new Post($request->all());
         //$post->published_at = \Carbon\Carbon::now();
         $tags = new Tag;
@@ -106,13 +109,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostRequest $request, $id)
+    public function update(UpdatePostRequest $request, $id)
     {
         $post = Post::findOrFail($id);
         $tags = new Tag;
         $tagNames = explode(',', $request->tags);
         $tagsIds = $tags->addList($tagNames);
-        $post->update($request->all());
+        $request->replace(['content', Purifier::clean($request->input('content') ) ]);
+        $post->update();
         $post->tag()->sync($tagsIds);
         
         return redirect('admin/posts');
