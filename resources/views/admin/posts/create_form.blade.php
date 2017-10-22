@@ -23,7 +23,7 @@
               <div class="form-group">
                 <label for="image" class="col-sm-2 control-label"></label>
                 <div class="col-sm-10">
-                   {!! Form::textarea('content',null,['class' => 'form-control', ]) !!} 
+                   {!! Form::textarea('content',null,['class' => 'form-control', 'id'=>'editor']) !!} 
                 </div>
               </div>
                             

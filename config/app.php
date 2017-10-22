@@ -163,7 +163,7 @@ return [
         Pyaesone17\ActiveState\ActiveStateServiceProvider::class,
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        
+        Mews\Purifier\PurifierServiceProvider::class,
     ],
 
     /*
@@ -212,7 +212,8 @@ return [
         'Form'     => Collective\Html\FormFacade::class,
         'HTML'     => Collective\Html\HtmlFacade::class,
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Purifier' => Mews\Purifier\Facades\Purifier::class,
     ],
 
 ];

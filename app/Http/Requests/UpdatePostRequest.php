@@ -23,9 +23,9 @@ class UpdatePostRequest extends Request
      */
     public function rules()
     {
-
+        dd($this->request->id);
         return [
-            'title'=> "required|min:3|max:50|unique:posts,title,".$this->request->get('id'), 
+            'title'=> "required|min:3|max:50|unique:posts,title,".$this->request->input('id'), 
             'content' => 'required',
             'tags' => 'max:225'
         ];

@@ -5,6 +5,8 @@
 <link href="{{ asset('css/bs-dropbox.css')}}" rel="stylesheet">
 <link href="{{ asset('css/plugins/bootstrap-datepicker3.min.css')}}" rel="stylesheet">
 <link href="{{ asset('css/plugins/trumbowyg.min.css')}}" rel="stylesheet">
+<link href="{{ asset('css/plugins/bootstrap-clockpicker.css')}}" rel="stylesheet">
+
 @endsection
 
 @section('content')
@@ -58,6 +60,13 @@
                             <div class="panel-body ">
                                 <div class="center-block">
                                     <div id="datepicker" data-date="{{Carbon\Carbon::now()}}"></div>
+                                    <div class="clearfix"><br></div>
+                                    <div class="input-group clockpicker">
+                        <input type="text" class="form-control text-center" value="" placeholder="{{Carbon\Carbon::now()->format('h:i:s')}}">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-clock-o"></i>
+                                        </span>
+                                    </div>                                    
                                 </div>
                             </div>
                         </div>  
@@ -72,10 +81,12 @@
    <script src="{{ asset('js/bootstrap-dropbox.js')}}"></script>
    <script src="{{ asset('js/plugins/bootstrap-datepicker.min.js')}}"></script>
    <script src="{{ asset('js/plugins/locales/bootstrap-datepicker.pl.min.js')}}"></script>
+   <script src="{{ asset('js/plugins/jquery-clockpicker.min.js')}}"></script>
    <script src="{{ asset('js/trumbowyg/trumbowyg.min.js')}}"></script>   
    <script type="text/javascript" src="{{ asset('js/trumbowyg/langs/pl.min.js')}}"></script>
 <script>
 $(document).ready(function(e){
+    var datetime={data: "",time:""};
 $(document).on("keypress", ":input:not(textarea)", function(event) { 
     return event.keyCode != 13;
 });   
@@ -94,14 +105,27 @@ $(document).on("keypress", ":input:not(textarea)", function(event) {
         startDate: "now",
         maxViewMode: 2,
         language: "pl",
-        format: "yyyy-mm-dd h:m",
+        format: "yyyy-mm-dd",
         leftArrow: '<i class="fa fa-long-arrow-left"></i>',
         rightArrow: '<i class="fa fa-long-arrow-right"></i>'
     });
     $('#datepicker').on('changeDate', function() {
-        $('#public_at').val(
-            $('#datepicker').datepicker('getFormattedDate')
-        );
+          let data =  $('#datepicker').datepicker('getFormattedDate'); 
+          let $tmpTime = $('[name=published_at]').val().split(" ")[1];
+        $('[name=published_at]').val(data+" "+$tmpTime);
+    });
+    
+    $('.clockpicker').clockpicker({
+    placement: 'bottom',
+    align: 'right',
+    autoclose: true,
+    'default': 'now',   
+    afterDone: function() {
+                        }    
+    })
+    .find('input').change(function(){
+        let $tmpData = $('[name=published_at]').val().split(" ")[0];
+        $('[name=published_at]').val($tmpData+" "+this.value+":00");
     });
     $('#editor').trumbowyg({
         svgPath: "{{ asset('img/icons.svg')}}",

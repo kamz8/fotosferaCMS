@@ -69,7 +69,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
    <script src="{{ asset('js/plugins/bootstrap-tagsinput.js')}}"></script>
    <script src="{{ asset('js/bootstrap-dropbox.js')}}"></script>
-   <script src="{{ asset('js/plugins//bootstrap-datepicker.min.js')}}"></script>
+   <script src="{{ asset('js/plugins/bootstrap-datepicker.min.js')}}"></script>
+   <script src="{{ asset('js/plugins/locales/bootstrap-datepicker.pl.min.js')}}"></script>
    <script src="{{ asset('js/trumbowyg/trumbowyg.min.js')}}"></script>   
    <script type="text/javascript" src="{{ asset('js/trumbowyg/langs/pl.min.js')}}"></script>
        <script>

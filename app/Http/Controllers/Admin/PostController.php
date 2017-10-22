@@ -64,9 +64,8 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        $request->replace(['content', Purifier::clean($request->input('content') ) ]);
         $post = new Post($request->all());
-        //$post->published_at = \Carbon\Carbon::now();
+        $post->content = Purifier::clean($request->get('content') );
         $tags = new Tag;
         $tagNames = explode(',', $request->tags);
         Auth::user()->post()->save($post);
@@ -116,7 +115,7 @@ class PostController extends Controller
         $tagNames = explode(',', $request->tags);
         $tagsIds = $tags->addList($tagNames);
         $request->replace(['content', Purifier::clean($request->input('content') ) ]);
-        $post->update();
+        $post->update($request->all());
         $post->tag()->sync($tagsIds);
         
         return redirect('admin/posts');

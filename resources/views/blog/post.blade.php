@@ -10,7 +10,7 @@
                     </header>
                     <section class="container">
                         <div class="text-center" id="post-img"><img class="polaroid" style="width: 80%; height: auto;" src="{{route('thumbnail',$post->media_id)}}"></div>
-                        <div id="content" class="content text-left">{! $post->content !}</div>
+                        <div id="content" class="content text-left">{!! $post->content !!}</div>
                         <span id="tags" class="tags"><i class="fa fa-tags"></i>@foreach($post->tag as $tag)<a href="{{route('tag',$tag->name)}}">{{$tag->name}}</a> @endforeach</span>
                     </section>
                 </article>
