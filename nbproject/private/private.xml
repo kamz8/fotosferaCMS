@@ -16,6 +16,7 @@
             <file>file:/C:/xampp/htdocs/fotosferaCMS/public/js/plugins/locales/bootstrap-datepicker.pl.min.js</file>
             <file>file:/C:/xampp/htdocs/fotosferaCMS/config/app.php</file>
             <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Http/Controllers/Admin/PostController.php</file>
+            <file>file:/C:/xampp/htdocs/fotosferaCMS/composer.json</file>
             <file>file:/C:/xampp/htdocs/fotosferaCMS/app/Http/Requests/UpdatePostRequest.php</file>
             <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/posts/create.blade.php</file>
             <file>file:/C:/xampp/htdocs/fotosferaCMS/resources/views/admin/posts/edit.blade.php</file>
